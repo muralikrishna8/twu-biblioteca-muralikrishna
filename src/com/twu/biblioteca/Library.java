@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 
 public class Library {
-    private ArrayList<String> bookList;
+    private ArrayList<Book> bookList;
 
     public Library() {
         addExistingBooksToLibrary();
@@ -12,14 +12,14 @@ public class Library {
     private void addExistingBooksToLibrary() {
         bookList = new ArrayList<>();
 
-        bookList.add("Book1");
-        bookList.add("Book2");
-        bookList.add("Book3");
+        bookList.add(new Book("Book1", "Author1", 2009));
+        bookList.add(new Book("Book2", "Author2", 2011));
+        bookList.add(new Book("Book3", "Author3", 2012));
     }
 
     public String books() {
         String books = "";
-        for (String book : bookList) {
+        for (Book book : bookList) {
             books += book + "\n";
         }
         return books;

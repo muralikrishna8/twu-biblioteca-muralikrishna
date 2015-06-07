@@ -12,7 +12,13 @@ public class LibraryTest {
         Library library = new Library();
 
         String actualBooksList = library.books();
+        String expected = String.format("%-50s|    %-40s|     %-7d\n" +
+                                        "%-50s|    %-40s|     %-7d\n" +
+                                        "%-50s|    %-40s|     %-7d\n",
+                                        "Book1", "Author1", 2009,
+                                        "Book2", "Author2", 2011,
+                                        "Book3", "Author3", 2012);
 
-        assertThat(actualBooksList, is("Book1\nBook2\nBook3\n"));
+        assertThat(actualBooksList, is(expected));
     }
 }
