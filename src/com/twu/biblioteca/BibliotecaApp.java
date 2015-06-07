@@ -4,11 +4,11 @@ public class BibliotecaApp {
     private BibliotecaOutput bibliotecaOutput;
     private String welcomeMessage = "Welcome to Biblioteca!";
 
-    public BibliotecaApp(BibliotecaOutput bibliotecaOutput){
+    public BibliotecaApp(BibliotecaOutput bibliotecaOutput) {
         this.bibliotecaOutput = bibliotecaOutput;
     }
 
-    public void displayWelcomeMessage(){
+    public void displayWelcomeMessage() {
         bibliotecaOutput.print(welcomeMessage);
     }
 }

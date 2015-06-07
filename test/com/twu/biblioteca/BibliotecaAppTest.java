@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 public class BibliotecaAppTest {
 
     @Test
-    public void specToCheckWhetherDisplayWelcomeMessageIsCalledPrinting(){
+    public void specToCheckWhetherDisplayWelcomeMessageIsCalledPrinting() {
         BibliotecaOutput bibliotecaOutput = Mockito.mock(BibliotecaOutput.class);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(bibliotecaOutput);
 
