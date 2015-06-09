@@ -8,7 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.mock;
 
-@RunWith (MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 
 public class BibliotecaAppTest {
 
@@ -24,16 +24,5 @@ public class BibliotecaAppTest {
         bibliotecaApp.displayWelcomeMessage();
 
         Mockito.verify(bibliotecaOutput).print("Welcome to Biblioteca!");
-    }
-
-    @Test
-    public void specToCheckPrintingBookList(){
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(bibliotecaOutput, library);
-        Mockito.doReturn("Book1\nBook2\nBook3\n").when(library).books();
-
-        String booksList = library.books();
-        bibliotecaApp.displayBooksList();
-
-        Mockito.verify(bibliotecaOutput).print(booksList);
     }
 }
