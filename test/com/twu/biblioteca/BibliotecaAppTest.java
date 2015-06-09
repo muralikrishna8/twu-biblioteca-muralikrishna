@@ -1,17 +1,24 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.mock;
 
+@RunWith (MockitoJUnitRunner.class)
+
 public class BibliotecaAppTest {
+
+    @Mock
+    Library library;
+    @Mock
+    BibliotecaOutput bibliotecaOutput;
 
     @Test
     public void specToCheckWhetherDisplayWelcomeMessageIsCalledPrinting() {
-        Library library = mock(Library.class);
-        BibliotecaOutput bibliotecaOutput = mock(BibliotecaOutput.class);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(bibliotecaOutput, library);
 
         bibliotecaApp.displayWelcomeMessage();
@@ -21,8 +28,6 @@ public class BibliotecaAppTest {
 
     @Test
     public void specToCheckPrintingBookList(){
-        Library library = mock(Library.class);
-        BibliotecaOutput bibliotecaOutput = mock(BibliotecaOutput.class);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(bibliotecaOutput, library);
         Mockito.doReturn("Book1\nBook2\nBook3\n").when(library).books();
 

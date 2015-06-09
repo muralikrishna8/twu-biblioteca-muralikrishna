@@ -17,4 +17,8 @@ public class BibliotecaApp {
     public void displayBooksList(){
         bibliotecaOutput.print(library.books());
     }
+
+    public static void main(String[] args) {
+        new BibliotecaApp(new BibliotecaOutput(), new Library());
+    }
 }
