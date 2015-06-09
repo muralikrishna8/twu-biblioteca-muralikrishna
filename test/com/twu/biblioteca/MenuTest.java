@@ -46,6 +46,17 @@ public class MenuTest {
 
     }
 
+    @Test
+    public void specForSelectingInvalidOptionShouldNotify() {
+        Menu menu = getMenu();
+        when(bibliotecaInput.read()).thenReturn("0");
+
+        menu.selectFromMenu();
+
+        Mockito.verify(bibliotecaInput).read();
+        Mockito.verify(bibliotecaOutput).print("Select a valid option!");
+    }
+
     private Menu getMenu() {
         HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
 

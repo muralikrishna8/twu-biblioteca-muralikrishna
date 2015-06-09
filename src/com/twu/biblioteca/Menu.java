@@ -8,7 +8,7 @@ public class Menu {
     BibliotecaInput bibliotecaInput;
 
     public Menu(HashMap<String, MenuListener> menuListeners,
-                BibliotecaOutput bibliotecaOutput, BibliotecaInput bibliotecaInput){
+        BibliotecaOutput bibliotecaOutput, BibliotecaInput bibliotecaInput){
         this.menuListeners = menuListeners;
         this.bibliotecaOutput = bibliotecaOutput;
         this.bibliotecaInput = bibliotecaInput;
@@ -20,6 +20,9 @@ public class Menu {
 
     public void selectFromMenu() {
         String option = bibliotecaInput.read();
-        menuListeners.get(option).performAction();
+        if(menuListeners.containsKey(option))
+            menuListeners.get(option).performAction();
+        else
+            bibliotecaOutput.print("Select a valid option!");
     }
 }
