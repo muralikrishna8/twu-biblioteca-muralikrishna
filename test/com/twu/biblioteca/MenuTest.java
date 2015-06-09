@@ -8,7 +8,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -22,6 +21,8 @@ public class MenuTest {
     BibliotecaInput bibliotecaInput;
     @Mock
     DisplayBooksList displayBooksList;
+    @Mock
+    QuitBiblioteca quitBiblioteca;
 
     private HashMap<Integer, MenuListener> menuItemListeners;
 
@@ -31,7 +32,7 @@ public class MenuTest {
 
         menu.displayMenu();
 
-        Mockito.verify(bibliotecaOutput).print("1. List All Books");
+        Mockito.verify(bibliotecaOutput).print("1. List All Books\n2. Quit");
     }
 
     @Test
@@ -57,10 +58,21 @@ public class MenuTest {
         Mockito.verify(bibliotecaOutput).print("Select a valid option!");
     }
 
+    @Test
+    public void specForSelctingQuitOptionShouldPerformActionOnQuitBiblioteca() {
+        Menu menu = getMenu();
+        when(bibliotecaInput.read()).thenReturn("2");
+
+        menu.selectFromMenu();
+
+        Mockito.verify(bibliotecaInput).read();
+        Mockito.verify(quitBiblioteca).performAction();
+    }
     private Menu getMenu() {
         HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
 
         menuItemListeners.put("1", displayBooksList);
+        menuItemListeners.put("2", quitBiblioteca);
 
         return new Menu(menuItemListeners, bibliotecaOutput, bibliotecaInput);
     }

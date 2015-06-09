@@ -15,7 +15,8 @@ public class Menu {
     }
 
     public void displayMenu() {
-        bibliotecaOutput.print("1. List All Books");
+        bibliotecaOutput.print("1. List All Books\n2. Quit");
+        bibliotecaOutput.print("Select from the Menu: ");
     }
 
     public void selectFromMenu() {
@@ -24,5 +25,6 @@ public class Menu {
             menuListeners.get(option).performAction();
         else
             bibliotecaOutput.print("Select a valid option!");
+        displayMenu();
     }
 }
