@@ -17,19 +17,19 @@ public class BibliotecaAppTest {
     @Mock
     Menu menu;
     @Mock
-    BibliotecaOutput bibliotecaOutput;
+    BibliotecaIO bibliotecaIO;
 
     BibliotecaApp bibliotecaApp;
 
     @Before
     public void setUp() throws Exception {
-        bibliotecaApp = new BibliotecaApp(bibliotecaOutput, menu);
+        bibliotecaApp = new BibliotecaApp(bibliotecaIO, menu);
     }
 
     @Test
     public void specForDisplayingWelcomeMessage() {
         bibliotecaApp.init();
-        verify(bibliotecaOutput).print("Welcome to Biblioteca!");
+        verify(bibliotecaIO).print("Welcome to Biblioteca!");
     }
 
     @Test

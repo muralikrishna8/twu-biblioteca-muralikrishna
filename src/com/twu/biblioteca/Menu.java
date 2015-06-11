@@ -4,30 +4,27 @@ import java.util.HashMap;
 
 public class Menu {
     HashMap<String, MenuListener> menuListeners;
-    BibliotecaOutput bibliotecaOutput;
-    BibliotecaInput bibliotecaInput;
+    BibliotecaIO bibliotecaIO;
 
-    public Menu(HashMap<String, MenuListener> menuListeners,
-                BibliotecaOutput bibliotecaOutput, BibliotecaInput bibliotecaInput) {
+    public Menu(HashMap<String, MenuListener> menuListeners, BibliotecaIO bibliotecaIO) {
         this.menuListeners = menuListeners;
-        this.bibliotecaOutput = bibliotecaOutput;
-        this.bibliotecaInput = bibliotecaInput;
+        this.bibliotecaIO = bibliotecaIO;
     }
 
     public void displayMenu() {
-        bibliotecaOutput.print("1. List All Books\n2. Quit");
-        bibliotecaOutput.print("Select from the Menu: ");
+        bibliotecaIO.print("1. List All Books\n2. Quit");
+        bibliotecaIO.print("Select from the Menu: ");
     }
 
     public boolean selectFromMenu() {
-        String option = bibliotecaInput.read();
+        String option = bibliotecaIO.read();
 
         if (isQuitOption(option)) {
             return false;
         } else if (menuListeners.containsKey(option)) {
             menuListeners.get(option).performAction();
         } else {
-            bibliotecaOutput.print("Select a valid option!");
+            bibliotecaIO.print("Select a valid option!");
         }
         return true;
 

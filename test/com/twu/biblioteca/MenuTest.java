@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.HashMap;
@@ -20,9 +19,7 @@ public class MenuTest {
     @Mock
     Library library;
     @Mock
-    BibliotecaOutput bibliotecaOutput;
-    @Mock
-    BibliotecaInput bibliotecaInput;
+    BibliotecaIO bibliotecaIO;
     @Mock
     DisplayBooksList displayBooksList;
 
@@ -33,40 +30,40 @@ public class MenuTest {
     public void setUp() throws Exception {
         HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
         menuItemListeners.put("1", displayBooksList);
-        menu = new Menu(menuItemListeners, bibliotecaOutput, bibliotecaInput);
+        menu = new Menu(menuItemListeners, bibliotecaIO);
     }
 
     @Test
     public void specToCheckWhetherPrintingTheMenuListIsCalled() {
         menu.displayMenu();
 
-        verify(bibliotecaOutput).print("1. List All Books\n2. Quit");
+        verify(bibliotecaIO).print("1. List All Books\n2. Quit");
     }
 
     @Test
     public void specForSelectingAMenuItemAndPerformingCorrespondingAction() {
-        when(bibliotecaInput.read()).thenReturn("1");
+        when(bibliotecaIO.read()).thenReturn("1");
 
         menu.selectFromMenu();
 
-        verify(bibliotecaInput).read();
+        verify(bibliotecaIO).read();
         verify(displayBooksList).performAction();
 
     }
 
     @Test
     public void specForSelectingInvalidOptionShouldNotify() {
-        when(bibliotecaInput.read()).thenReturn("0");
+        when(bibliotecaIO.read()).thenReturn("0");
 
         menu.selectFromMenu();
 
-        verify(bibliotecaInput).read();
-        verify(bibliotecaOutput).print("Select a valid option!");
+        verify(bibliotecaIO).read();
+        verify(bibliotecaIO).print("Select a valid option!");
     }
 
     @Test
     public void specForSelectingQuitOptionWillReturnFalse() {
-        when(bibliotecaInput.read()).thenReturn("2");
+        when(bibliotecaIO.read()).thenReturn("2");
 
         boolean doNotQuit = menu.selectFromMenu();
 

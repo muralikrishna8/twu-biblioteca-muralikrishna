@@ -1,19 +1,20 @@
 package com.twu.biblioteca;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class BibliotecaApp {
-    private BibliotecaOutput bibliotecaOutput;
+    private BibliotecaIO bibliotecaIO;
     private Menu menu;
     private String welcomeMessage = "Welcome to Biblioteca!";
 
-    public BibliotecaApp(BibliotecaOutput bibliotecaOutput, Menu menu) {
-        this.bibliotecaOutput = bibliotecaOutput;
+    public BibliotecaApp(BibliotecaIO bibliotecaIO, Menu menu) {
+        this.bibliotecaIO = bibliotecaIO;
         this.menu = menu;
     }
 
     private void displayWelcomeMessage() {
-        bibliotecaOutput.print(welcomeMessage);
+        bibliotecaIO.print(welcomeMessage);
     }
 
     public void init() {
@@ -25,15 +26,14 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
-        BibliotecaOutput bibliotecaOutput = new BibliotecaOutput();
-        BibliotecaInput bibliotecaInput = new BibliotecaInput();
+        BibliotecaIO bibliotecaIO = new BibliotecaIO(new Scanner(System.in));
         Library library = new Library();
 
-        DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaOutput, library);
+        DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaIO, library);
         menuItemListeners.put("1", displayBooksList);
 
-        Menu menu = new Menu(menuItemListeners, bibliotecaOutput, bibliotecaInput);
+        Menu menu = new Menu(menuItemListeners, bibliotecaIO);
 
-        new BibliotecaApp(new BibliotecaOutput(), menu).init();
+        new BibliotecaApp(bibliotecaIO, menu).init();
     }
 }
