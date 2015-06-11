@@ -1,18 +1,24 @@
 package com.twu.biblioteca;
 
+import com.sun.deploy.util.StringUtils;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Menu {
     HashMap<String, MenuListener> menuListeners;
+    ArrayList<String> menuList;
     BibliotecaIO bibliotecaIO;
 
-    public Menu(HashMap<String, MenuListener> menuListeners, BibliotecaIO bibliotecaIO) {
+    public Menu(HashMap<String, MenuListener> menuListeners, BibliotecaIO bibliotecaIO,
+                ArrayList<String> menuList) {
         this.menuListeners = menuListeners;
         this.bibliotecaIO = bibliotecaIO;
+        this.menuList = menuList;
     }
 
     public void displayMenu() {
-        bibliotecaIO.print("1. List All Books\n2. Quit");
+        bibliotecaIO.print(StringUtils.join(menuList, "\n"));
         bibliotecaIO.print("Select from the Menu: ");
     }
 

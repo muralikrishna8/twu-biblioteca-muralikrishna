@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertFalse;
@@ -24,19 +25,24 @@ public class MenuTest {
 
     private HashMap<Integer, MenuListener> menuItemListeners;
     private Menu menu;
+    private ArrayList<String> menuList;
 
     @Before
     public void setUp() throws Exception {
         HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
         menuItemListeners.put("1", displayBooksList);
-        menu = new Menu(menuItemListeners, bibliotecaIO);
+        menuList = new ArrayList<>();
+        menuList.add("1. List Books\n");
+        menuList.add("2. Quit\n");
+
+        menu = new Menu(menuItemListeners, bibliotecaIO, menuList);
     }
 
     @Test
     public void specToCheckWhetherPrintingTheMenuListIsCalled() {
         menu.displayMenu();
 
-        verify(bibliotecaIO).print("1. List All Books\n2. Quit");
+        verify(bibliotecaIO).print(menuList.toString());
     }
 
     @Test
