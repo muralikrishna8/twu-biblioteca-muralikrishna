@@ -9,8 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
