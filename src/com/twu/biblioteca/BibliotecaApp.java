@@ -18,8 +18,9 @@ public class BibliotecaApp {
 
     public void init() {
         displayWelcomeMessage();
-        menu.displayMenu();
-        menu.selectFromMenu();
+        do {
+            menu.displayMenu();
+        } while (menu.selectFromMenu());
     }
 
     public static void main(String[] args) {
@@ -29,9 +30,7 @@ public class BibliotecaApp {
         Library library = new Library();
 
         DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaOutput, library);
-        QuitBiblioteca quitBiblioteca = new QuitBiblioteca();
         menuItemListeners.put("1", displayBooksList);
-        menuItemListeners.put("2", quitBiblioteca);
 
         Menu menu = new Menu(menuItemListeners, bibliotecaOutput, bibliotecaInput);
 

@@ -24,21 +24,31 @@ public class BibliotecaAppTest {
     @Before
     public void setUp() throws Exception {
         bibliotecaApp = new BibliotecaApp(bibliotecaOutput, menu);
-        bibliotecaApp.init();
     }
 
     @Test
     public void specForDisplayingWelcomeMessage() {
+        bibliotecaApp.init();
         verify(bibliotecaOutput).print("Welcome to Biblioteca!");
     }
 
     @Test
     public void specForDisplayingMenuList() {
+        bibliotecaApp.init();
         verify(menu).displayMenu();
     }
 
     @Test
     public void specForDisplayingBooksList() {
+        bibliotecaApp.init();
         verify(menu).selectFromMenu();
+    }
+
+    @Test
+    public void specForDisplayingMenuTillQuitOptionSelected() {
+        when(menu.selectFromMenu()).thenReturn(true, true, false);
+        bibliotecaApp.init();
+
+        verify(menu, times(3)).displayMenu();
     }
 }
