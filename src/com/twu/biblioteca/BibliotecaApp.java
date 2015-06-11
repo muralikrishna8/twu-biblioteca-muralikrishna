@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -27,7 +28,12 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
         BibliotecaIO bibliotecaIO = new BibliotecaIO(new Scanner(System.in));
-        Library library = new Library();
+
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(new Book("Book1", "Author1", 2009));
+        books.add(new Book("Book2", "Author2", 2011));
+        books.add(new Book("Book3", "Author3", 2012));
+        Library library = new Library(books);
 
         DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaIO, library);
         menuItemListeners.put("1", displayBooksList);
