@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -8,6 +9,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.HashMap;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -21,59 +25,51 @@ public class MenuTest {
     BibliotecaInput bibliotecaInput;
     @Mock
     DisplayBooksList displayBooksList;
-    @Mock
-    QuitBiblioteca quitBiblioteca;
 
     private HashMap<Integer, MenuListener> menuItemListeners;
+    private Menu menu;
+
+    @Before
+    public void setUp() throws Exception {
+        HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
+        menuItemListeners.put("1", displayBooksList);
+        menu = new Menu(menuItemListeners, bibliotecaOutput, bibliotecaInput);
+    }
 
     @Test
     public void specToCheckWhetherPrintingTheMenuListIsCalled() {
-        Menu menu = getMenu();
-
         menu.displayMenu();
 
-        Mockito.verify(bibliotecaOutput).print("1. List All Books\n2. Quit");
+        verify(bibliotecaOutput).print("1. List All Books\n2. Quit");
     }
 
     @Test
     public void specForSelectingAMenuItemAndPerformingCorrespondingAction() {
-        Menu menu = getMenu();
         when(bibliotecaInput.read()).thenReturn("1");
 
         menu.selectFromMenu();
 
-        Mockito.verify(bibliotecaInput).read();
-        Mockito.verify(displayBooksList).performAction();
+        verify(bibliotecaInput).read();
+        verify(displayBooksList).performAction();
 
     }
 
     @Test
     public void specForSelectingInvalidOptionShouldNotify() {
-        Menu menu = getMenu();
         when(bibliotecaInput.read()).thenReturn("0");
 
         menu.selectFromMenu();
 
-        Mockito.verify(bibliotecaInput).read();
-        Mockito.verify(bibliotecaOutput).print("Select a valid option!");
+        verify(bibliotecaInput).read();
+        verify(bibliotecaOutput).print("Select a valid option!");
     }
 
     @Test
-    public void specForSelctingQuitOptionShouldPerformActionOnQuitBiblioteca() {
-        Menu menu = getMenu();
+    public void specForSelectingQuitOptionWillReturnFalse() {
         when(bibliotecaInput.read()).thenReturn("2");
 
-        menu.selectFromMenu();
+        boolean doNotQuit = menu.selectFromMenu();
 
-        Mockito.verify(bibliotecaInput).read();
-        Mockito.verify(quitBiblioteca).performAction();
-    }
-    private Menu getMenu() {
-        HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
-
-        menuItemListeners.put("1", displayBooksList);
-        menuItemListeners.put("2", quitBiblioteca);
-
-        return new Menu(menuItemListeners, bibliotecaOutput, bibliotecaInput);
+        assertFalse(doNotQuit);
     }
 }
