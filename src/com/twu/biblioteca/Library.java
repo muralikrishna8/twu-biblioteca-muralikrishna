@@ -13,8 +13,13 @@ public class Library {
     public String books() {
         String books = "";
         for (Book book : this.books.keySet()) {
-            books += book + "\n";
+            if(isBookNotCheckedOut(book))
+                books += book + "\n";
         }
         return books;
+    }
+
+    private Boolean isBookNotCheckedOut(Book book) {
+        return this.books.get(book);
     }
 }

@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertFalse;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -42,7 +44,7 @@ public class MenuTest {
     public void specToCheckWhetherPrintingTheMenuListIsCalled() {
         menu.displayMenu();
 
-        verify(bibliotecaIO).print(menuList.toString());
+        verify(bibliotecaIO, times(2)).print(Matchers.anyString());
     }
 
     @Test
