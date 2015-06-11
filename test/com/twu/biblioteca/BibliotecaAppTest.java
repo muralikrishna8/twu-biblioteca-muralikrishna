@@ -1,11 +1,13 @@
 package com.twu.biblioteca;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -13,16 +15,30 @@ import static org.mockito.Mockito.mock;
 public class BibliotecaAppTest {
 
     @Mock
-    Library library;
+    Menu menu;
     @Mock
     BibliotecaOutput bibliotecaOutput;
 
+    BibliotecaApp bibliotecaApp;
+
+    @Before
+    public void setUp() throws Exception {
+        bibliotecaApp = new BibliotecaApp(bibliotecaOutput, menu);
+        bibliotecaApp.init();
+    }
+
     @Test
-    public void specToCheckWhetherDisplayWelcomeMessageIsCalledPrinting() {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(bibliotecaOutput, library);
+    public void specForDisplayingWelcomeMessage() {
+        verify(bibliotecaOutput).print("Welcome to Biblioteca!");
+    }
 
-        bibliotecaApp.displayWelcomeMessage();
+    @Test
+    public void specForDisplayingMenuList() {
+        verify(menu).displayMenu();
+    }
 
-        Mockito.verify(bibliotecaOutput).print("Welcome to Biblioteca!");
+    @Test
+    public void specForDisplayingBooksList() {
+        verify(menu).selectFromMenu();
     }
 }

@@ -25,6 +25,5 @@ public class Menu {
             menuListeners.get(option).performAction();
         else
             bibliotecaOutput.print("Select a valid option!");
-        displayMenu();
     }
 }
