@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 public class BibliotecaApp {
     private BibliotecaIO bibliotecaIO;
     private Menu menu;
-    private String welcomeMessage = "Welcome to Biblioteca!";
 
     public BibliotecaApp(BibliotecaIO bibliotecaIO, Menu menu) {
         this.bibliotecaIO = bibliotecaIO;
@@ -11,7 +10,7 @@ public class BibliotecaApp {
     }
 
     private void displayWelcomeMessage() {
-        bibliotecaIO.print(welcomeMessage);
+        bibliotecaIO.print(Messages.WELCOME_MESSAGE);
     }
 
     public void init() {

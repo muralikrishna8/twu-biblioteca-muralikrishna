@@ -20,7 +20,7 @@ public class Menu {
         for(String menuItem : menuList)
             menu += menuItem + "\n";
         bibliotecaIO.print(menu);
-        bibliotecaIO.print("Select from the Menu: ");
+        bibliotecaIO.print(Messages.SELECT_MENU_ITEM);
     }
 
     public boolean selectFromMenu() {
@@ -31,7 +31,7 @@ public class Menu {
         } else if (menuListeners.containsKey(option)) {
             menuListeners.get(option).performAction();
         } else {
-            bibliotecaIO.print("Select a valid option!");
+            bibliotecaIO.print(Messages.INVALID_OPTION);
         }
         return true;
 
