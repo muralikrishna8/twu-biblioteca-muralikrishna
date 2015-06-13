@@ -18,8 +18,14 @@ public class Library {
         return books;
     }
 
-    public String checkout() {
-        return null;
+    public String checkout(Book bookToCheckout) {
+        for(Book book : books.keySet()){
+            if(book.equals(bookToCheckout) && books.get(book)){
+                books.put(book, false);
+                return Messages.SUCCESSFUL_CHECKOUT;
+            }
+        }
+        return Messages.BOOK_NOT_AVAILABLE;
     }
 
     private Boolean isBookNotCheckedOut(Book book) {
