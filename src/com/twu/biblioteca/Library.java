@@ -12,7 +12,7 @@ public class Library {
     public String books() {
         String books = "";
         for (Book book : this.books.keySet()) {
-            if(isBookNotCheckedOut(book))
+            if(isCheckedOut(book))
                 books += book + "\n";
         }
         return books;
@@ -20,7 +20,7 @@ public class Library {
 
     public String checkout(Book bookToCheckout) {
         for(Book book : books.keySet()){
-            if(book.equals(bookToCheckout) && books.get(book)){
+            if(book.equals(bookToCheckout) && isCheckedOut(book)){
                 books.put(book, false);
                 return Messages.SUCCESSFUL_CHECKOUT;
             }
@@ -28,11 +28,17 @@ public class Library {
         return Messages.BOOK_NOT_AVAILABLE;
     }
 
-    public String returnBook(Book book) {
-        return null;
+    public String returnBook(Book bookToReturn) {
+        for(Book book : books.keySet()){
+            if(book.equals(bookToReturn) && !isCheckedOut(book)){
+                books.put(book, true);
+                return Messages.SUCCESSFUL_RETURN;
+            }
+        }
+        return Messages.UNSUCCESSFUL_RETURN;
     }
 
-    private Boolean isBookNotCheckedOut(Book book) {
-        return this.books.get(book);
+    private Boolean isCheckedOut(Book book) {
+        return books.get(book);
     }
 }

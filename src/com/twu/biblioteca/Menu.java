@@ -38,6 +38,6 @@ public class Menu {
     }
 
     private boolean isQuitOption(String option) {
-        return option.equals("3");
+        return option.equals("4");
     }
 }

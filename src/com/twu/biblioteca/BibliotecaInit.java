@@ -21,11 +21,13 @@ public class BibliotecaInit {
         DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaIO, library);
         menuItemListeners.put("1", displayBooksList);
         menuItemListeners.put("2", new CheckOutBook(bibliotecaIO, library, new BookParser()));
+        menuItemListeners.put("3", new ReturnBook(bibliotecaIO, library, new BookParser()));
 
         ArrayList<String> menuList = new ArrayList<>();
         menuList.add("1. List Books");
         menuList.add("2. CheckOut Book");
-        menuList.add("3. Quit");
+        menuList.add("3. Return Book");
+        menuList.add("4. Quit");
 
         Menu menu = new Menu(menuItemListeners, bibliotecaIO, menuList);
 
