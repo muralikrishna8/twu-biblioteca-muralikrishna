@@ -23,7 +23,8 @@ public class BibliotecaInit {
 
         ArrayList<String> menuList = new ArrayList<>();
         menuList.add("1. List Books");
-        menuList.add("2. Quit");
+        menuList.add("2. CheckOut Book");
+        menuList.add("3. Quit");
 
         Menu menu = new Menu(menuItemListeners, bibliotecaIO, menuList);
 

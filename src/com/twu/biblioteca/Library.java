@@ -18,6 +18,10 @@ public class Library {
         return books;
     }
 
+    public String checkout() {
+        return null;
+    }
+
     private Boolean isBookNotCheckedOut(Book book) {
         return this.books.get(book);
     }
