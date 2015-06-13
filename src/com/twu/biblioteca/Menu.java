@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import com.sun.deploy.util.StringUtils;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +16,10 @@ public class Menu {
     }
 
     public void displayMenu() {
-        bibliotecaIO.print(StringUtils.join(menuList, "\n"));
+        String menu = "";
+        for(String menuItem : menuList)
+            menu += menuItem + "\n";
+        bibliotecaIO.print(menu);
         bibliotecaIO.print("Select from the Menu: ");
     }
 
