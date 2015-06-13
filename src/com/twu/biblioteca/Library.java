@@ -28,6 +28,10 @@ public class Library {
         return Messages.BOOK_NOT_AVAILABLE;
     }
 
+    public String returnBook(Book book) {
+        return null;
+    }
+
     private Boolean isBookNotCheckedOut(Book book) {
         return this.books.get(book);
     }

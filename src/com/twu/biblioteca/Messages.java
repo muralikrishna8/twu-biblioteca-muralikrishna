@@ -6,4 +6,6 @@ public interface Messages {
     String SELECT_MENU_ITEM = "Select from the Menu: ";
     String SUCCESSFUL_CHECKOUT = "Thank you! Enjoy the book!";
     String BOOK_NOT_AVAILABLE = "That book is not available.";
+    String SUCCESSFUL_RETURN = "Thank you for returning the book.";
+    String UNSUCCESSFUL_RETURN = "That is not a valid book to return.";
 }
