@@ -16,7 +16,7 @@ public class Menu {
     }
 
     public void displayMenu() {
-        String menu = "";
+        String menu = "\n";
         for(String menuItem : menuList)
             menu += menuItem + "\n";
         bibliotecaIO.print(menu);

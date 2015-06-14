@@ -22,7 +22,7 @@
     </target>
 
     <target name="test" depends="compile,compileTests">
-        <junit printsummary="yes">
+        <junit printsummary="yes" failureproperty="test.failed">
             <classpath>
                 <path refid="classpath"/>
                 <path path="out/src/classes"/>
@@ -35,6 +35,7 @@
                 <fileset dir="test" includes="**/*Test.java"/>
             </batchtest>
         </junit>
+        <fail message="Test failure detected, check test results." if="test.failed" />
     </target>
 
 </project>
