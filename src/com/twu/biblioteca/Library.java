@@ -32,13 +32,13 @@ public class Library {
         return Messages.BOOK_NOT_AVAILABLE;
     }
 
-    public String returnBook(Book bookToReturn) {
-        for(Book book : checkedOutBooks)
-            if (book.equals(bookToReturn)) {
-                checkedOutBooks.remove(book);
-                availableBooks.add(book);
-                return Messages.SUCCESSFUL_RETURN;
-            }
+    public String returnBook(String title) {
+        searchBooksWithTitle(title, checkedOutBooks);
+        for(Book book : searchResult) {
+            checkedOutBooks.remove(book);
+            availableBooks.add(book);
+            return Messages.SUCCESSFUL_RETURN;
+        }
         return Messages.UNSUCCESSFUL_RETURN;
     }
 

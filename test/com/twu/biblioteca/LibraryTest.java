@@ -57,24 +57,22 @@ public class LibraryTest {
 
     @Test
     public void shouldNotBeAbleToReturnABookWhenBookIsNotInLibrary() {
-        String actualMessage = library.returnBook(new Book("Book4", "", 0));
+        String actualMessage = library.returnBook("Book4");
 
         assertThat(actualMessage, is(Messages.UNSUCCESSFUL_RETURN));
     }
 
     @Test
     public void shouldBeAbleToReturnABookWhenBookIsInLibraryButAlreadyCheckedOut() {
-        String actualMessage = library.returnBook(new Book("Book2", "", 0));
+        String actualMessage = library.returnBook("Book2");
 
         assertThat(actualMessage, is(Messages.SUCCESSFUL_RETURN));
     }
 
     @Test
     public void shouldNotBeAbleToReturnABookWhenBookIsInLibraryAndNotCheckedOutBefore() {
-        String actualMessage = library.returnBook(new Book("Book1", "", 0));
+        String actualMessage = library.returnBook("Book1");
 
         assertThat(actualMessage, is(Messages.UNSUCCESSFUL_RETURN));
     }
-
-
 }

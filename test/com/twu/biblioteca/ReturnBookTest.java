@@ -32,10 +32,9 @@ public class ReturnBookTest {
     public void specForGettingABookByTakingBookTitleFromUser() {
         ReturnBook returnBook = new ReturnBook(bibliotecaIO, library, bookParser);
         when(bibliotecaIO.read()).thenReturn("Book1");
-        when(bookParser.getBook("Book1")).thenReturn(new Book("Book1", "", 0));
 
         returnBook.performAction();
 
-        verify(library).returnBook(new Book("Book1", "", 0));
+        verify(library).returnBook("Book1");
     }
 }

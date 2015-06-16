@@ -15,7 +15,6 @@ public class ReturnBook implements MenuListener{
     public void performAction() {
         bibliotecaIO.print("Enter Book Name: ");
         String bookTitle = bibliotecaIO.read();
-        Book book = bookParser.getBook(bookTitle);
-        bibliotecaIO.print(library.returnBook(book));
+        bibliotecaIO.print(library.returnBook(bookTitle));
     }
 }
