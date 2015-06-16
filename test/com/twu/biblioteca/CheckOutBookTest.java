@@ -16,12 +16,10 @@ public class CheckOutBookTest {
     BibliotecaIO bibliotecaIO;
     @Mock
     Library library;
-    @Mock
-    BookParser bookParser;
 
     @Test
     public void specForCheckOutBookActionResult() {
-        CheckOutBook checkOutBook = new CheckOutBook(bibliotecaIO, library, bookParser);
+        CheckOutBook checkOutBook = new CheckOutBook(bibliotecaIO, library);
 
         checkOutBook.performAction();
 
@@ -30,7 +28,7 @@ public class CheckOutBookTest {
 
     @Test
     public void specForGettingABookByTakingBookTitleFromUser() {
-        CheckOutBook checkOutBook = new CheckOutBook(bibliotecaIO, library, bookParser);
+        CheckOutBook checkOutBook = new CheckOutBook(bibliotecaIO, library);
         when(bibliotecaIO.read()).thenReturn("Book1");
 
         checkOutBook.performAction();

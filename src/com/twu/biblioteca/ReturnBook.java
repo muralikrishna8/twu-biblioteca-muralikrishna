@@ -3,12 +3,10 @@ package com.twu.biblioteca;
 public class ReturnBook implements MenuListener{
     private BibliotecaIO bibliotecaIO;
     private Library library;
-    private BookParser bookParser;
 
-    public ReturnBook(BibliotecaIO bibliotecaIO, Library library, BookParser bookParser) {
+    public ReturnBook(BibliotecaIO bibliotecaIO, Library library) {
         this.bibliotecaIO = bibliotecaIO;
         this.library = library;
-        this.bookParser = bookParser;
     }
 
     @Override

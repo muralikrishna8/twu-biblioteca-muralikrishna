@@ -16,12 +16,10 @@ public class ReturnBookTest {
     BibliotecaIO bibliotecaIO;
     @Mock
     Library library;
-    @Mock
-    BookParser bookParser;
 
     @Test
     public void specForReturnBookActionResult() {
-        ReturnBook returnBook = new ReturnBook(bibliotecaIO, library, bookParser);
+        ReturnBook returnBook = new ReturnBook(bibliotecaIO, library);
 
         returnBook.performAction();
 
@@ -30,7 +28,7 @@ public class ReturnBookTest {
 
     @Test
     public void specForGettingABookByTakingBookTitleFromUser() {
-        ReturnBook returnBook = new ReturnBook(bibliotecaIO, library, bookParser);
+        ReturnBook returnBook = new ReturnBook(bibliotecaIO, library);
         when(bibliotecaIO.read()).thenReturn("Book1");
 
         returnBook.performAction();

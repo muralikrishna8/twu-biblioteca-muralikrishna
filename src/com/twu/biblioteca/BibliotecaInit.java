@@ -17,8 +17,8 @@ public class BibliotecaInit {
 
         DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaIO, library);
         menuItemListeners.put("1", displayBooksList);
-        menuItemListeners.put("2", new CheckOutBook(bibliotecaIO, library, new BookParser()));
-        menuItemListeners.put("3", new ReturnBook(bibliotecaIO, library, new BookParser()));
+        menuItemListeners.put("2", new CheckOutBook(bibliotecaIO, library));
+        menuItemListeners.put("3", new ReturnBook(bibliotecaIO, library));
 
         ArrayList<String> menuList = new ArrayList<>();
         menuList.add("1. List Books");
