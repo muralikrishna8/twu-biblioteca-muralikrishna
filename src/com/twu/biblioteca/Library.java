@@ -5,10 +5,13 @@ import java.util.ArrayList;
 public class Library {
     private ArrayList<Book> availableBooks;
     private ArrayList<Book> checkedOutBooks;
+    private ArrayList<Book> searchResult;
 
-    public Library(ArrayList<Book> books, ArrayList<Book> checkedOutBooks) {
+    public Library(ArrayList<Book> books, ArrayList<Book> checkedOutBooks,
+                   ArrayList<Book> searchResult) {
         this.availableBooks = books;
         this.checkedOutBooks = checkedOutBooks;
+        this.searchResult = searchResult;
     }
 
     public String books() {
@@ -38,5 +41,14 @@ public class Library {
                 return Messages.SUCCESSFUL_RETURN;
             }
         return Messages.UNSUCCESSFUL_RETURN;
+    }
+
+    private void searchBooksWithTitle(String title, ArrayList<Book> list) {
+        searchResult.clear();
+        for (Book book : list) {
+            if(book.matchTitle(title)) {
+                searchResult.add(book);
+            }
+        }
     }
 }

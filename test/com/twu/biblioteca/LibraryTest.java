@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -21,7 +20,7 @@ public class LibraryTest {
         availableBooks.add(new Book("Book3", "Author3", 2012));
 
         checkedOutBooks.add(new Book("Book2", "Author2", 2011));
-        library = new Library(availableBooks, checkedOutBooks);
+        library = new Library(availableBooks, checkedOutBooks, new ArrayList<Book>());
     }
 
     @Test
