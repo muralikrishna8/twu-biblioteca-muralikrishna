@@ -20,4 +20,8 @@ public class BooksController {
         String bookTitle = bibliotecaIO.read();
         bibliotecaIO.print(library.returnBook(bookTitle));
     }
+
+    public void displayListOfBooks() {
+        bibliotecaIO.print(library.books());
+    }
 }

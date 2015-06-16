@@ -72,4 +72,11 @@ public class BooksControllerTest {
         verify(library).returnBook("Book1");
         verify(bibliotecaIO, times(2)).print(Matchers.anyString());
     }
+
+    @Test
+    public void shouldCallBooksClassInLibrayToDisplayAllBooks() {
+        booksController.displayListOfBooks();
+
+        verify(library).books();
+    }
 }

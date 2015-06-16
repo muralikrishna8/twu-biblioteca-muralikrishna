@@ -2,16 +2,14 @@ package com.twu.biblioteca;
 
 public class DisplayBooksList implements MenuListener {
 
-    BibliotecaIO bibliotecaIO;
-    Library library;
+    private BooksController booksController;
 
-    public DisplayBooksList(BibliotecaIO bibliotecaIO, Library library) {
-        this.bibliotecaIO = bibliotecaIO;
-        this.library = library;
+    public DisplayBooksList(BooksController booksController) {
+        this.booksController = booksController;
     }
 
     @Override
     public void performAction() {
-        bibliotecaIO.print(library.books());
+        booksController.displayListOfBooks();
     }
 }

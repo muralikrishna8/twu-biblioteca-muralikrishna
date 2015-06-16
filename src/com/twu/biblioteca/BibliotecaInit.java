@@ -17,7 +17,7 @@ public class BibliotecaInit {
 
         BooksController booksController = new BooksController(library, bibliotecaIO);
 
-        DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaIO, library);
+        DisplayBooksList displayBooksList = new DisplayBooksList(booksController);
         menuItemListeners.put("1", displayBooksList);
         menuItemListeners.put("2", new CheckOutBook(booksController));
         menuItemListeners.put("3", new ReturnBook(booksController));

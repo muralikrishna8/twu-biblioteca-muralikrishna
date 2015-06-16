@@ -11,16 +11,14 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class DisplayBooksListTest {
     @Mock
-    BibliotecaIO bibliotecaIO;
-    @Mock
-    Library library;
+    BooksController booksController;
 
     @Test
-    public void specForDisplayingBooksList() {
-        DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaIO, library);
+    public void shouldCallDisplayBooksOnPerformingAction() {
+        DisplayBooksList displayBooksList = new DisplayBooksList(booksController);
 
         displayBooksList.performAction();
 
-        verify(bibliotecaIO).print(Matchers.anyString());
+        verify(booksController).displayListOfBooks();
     }
 }
