@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -12,11 +10,12 @@ public class BibliotecaInit {
         HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
         BibliotecaIO bibliotecaIO = new BibliotecaIO(new Scanner(System.in));
 
-        LinkedHashMap<Book, Boolean> books = new LinkedHashMap<>();
-        books.put(new Book("Book1", "Author1", 2009), true);
-        books.put(new Book("Book2", "Author2", 2011), true);
-        books.put(new Book("Book3", "Author3", 2012), true);
-        Library library = new Library(books);
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        availableBooks.add(new Book("Book1", "Author1", 2009));
+        availableBooks.add(new Book("Book2", "Author2", 2011));
+        availableBooks.add(new Book("Book3", "Author3", 2012));
+        Library library = new Library(availableBooks, checkedOutBooks);
 
         DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaIO, library);
         menuItemListeners.put("1", displayBooksList);

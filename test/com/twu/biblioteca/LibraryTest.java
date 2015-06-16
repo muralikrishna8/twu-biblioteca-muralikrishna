@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import static org.hamcrest.core.Is.is;
@@ -14,11 +15,13 @@ public class LibraryTest {
 
     @Before
     public void setUp() throws Exception {
-        LinkedHashMap<Book, Boolean> books = new LinkedHashMap<>();
-        books.put(new Book("Book1", "Author1", 2009), true);
-        books.put(new Book("Book2", "Author2", 2011), false);
-        books.put(new Book("Book3", "Author3", 2012), true);
-        library = new Library(books);
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        availableBooks.add(new Book("Book1", "Author1", 2009));
+        availableBooks.add(new Book("Book3", "Author3", 2012));
+
+        checkedOutBooks.add(new Book("Book2", "Author2", 2011));
+        library = new Library(availableBooks, checkedOutBooks);
     }
 
     @Test

@@ -1,27 +1,29 @@
 package com.twu.biblioteca;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Library {
-    private HashMap<Book, Boolean> books;
+    private ArrayList<Book> availableBooks;
+    private ArrayList<Book> checkedOutBooks;
 
-    public Library(HashMap<Book, Boolean> books) {
-        this.books = books;
+    public Library(ArrayList<Book> books, ArrayList<Book> checkedOutBooks) {
+        this.availableBooks = books;
+        this.checkedOutBooks = checkedOutBooks;
     }
 
     public String books() {
         String books = "";
-        for (Book book : this.books.keySet()) {
-            if(isCheckedOut(book))
-                books += book + "\n";
+        for (Book book : this.availableBooks) {
+            books += book + "\n";
         }
         return books;
     }
 
     public String checkout(Book bookToCheckout) {
-        for(Book book : books.keySet()){
-            if(book.equals(bookToCheckout) && isCheckedOut(book)){
-                books.put(book, false);
+        for(Book book : availableBooks){
+            if(book.equals(bookToCheckout)){
+                availableBooks.remove(book);
+                checkedOutBooks.add(book);
                 return Messages.SUCCESSFUL_CHECKOUT;
             }
         }
@@ -29,16 +31,12 @@ public class Library {
     }
 
     public String returnBook(Book bookToReturn) {
-        for(Book book : books.keySet()){
-            if(book.equals(bookToReturn) && !isCheckedOut(book)){
-                books.put(book, true);
+        for(Book book : checkedOutBooks)
+            if (book.equals(bookToReturn)) {
+                checkedOutBooks.remove(book);
+                availableBooks.add(book);
                 return Messages.SUCCESSFUL_RETURN;
             }
-        }
         return Messages.UNSUCCESSFUL_RETURN;
-    }
-
-    private Boolean isCheckedOut(Book book) {
-        return books.get(book);
     }
 }
