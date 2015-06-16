@@ -15,7 +15,6 @@ public class CheckOutBook implements MenuListener {
     public void performAction() {
         bibliotecaIO.print("Enter Book Name: ");
         String bookTitle = bibliotecaIO.read();
-        Book book = bookParser.getBook(bookTitle);
-        bibliotecaIO.print(library.checkout(book));
+        bibliotecaIO.print(library.checkout(bookTitle));
     }
 }

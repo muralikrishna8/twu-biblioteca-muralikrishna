@@ -22,13 +22,12 @@ public class Library {
         return books;
     }
 
-    public String checkout(Book bookToCheckout) {
-        for(Book book : availableBooks){
-            if(book.equals(bookToCheckout)){
-                availableBooks.remove(book);
-                checkedOutBooks.add(book);
-                return Messages.SUCCESSFUL_CHECKOUT;
-            }
+    public String checkout(String title) {
+        searchBooksWithTitle(title, availableBooks);
+        for(Book book : searchResult){
+            availableBooks.remove(book);
+            checkedOutBooks.add(book);
+            return Messages.SUCCESSFUL_CHECKOUT;
         }
         return Messages.BOOK_NOT_AVAILABLE;
     }

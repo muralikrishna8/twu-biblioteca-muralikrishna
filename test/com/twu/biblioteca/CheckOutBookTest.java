@@ -32,10 +32,9 @@ public class CheckOutBookTest {
     public void specForGettingABookByTakingBookTitleFromUser() {
         CheckOutBook checkOutBook = new CheckOutBook(bibliotecaIO, library, bookParser);
         when(bibliotecaIO.read()).thenReturn("Book1");
-        when(bookParser.getBook("Book1")).thenReturn(new Book("Book1", "", 0));
 
         checkOutBook.performAction();
 
-        verify(library).checkout(new Book("Book1", "", 0));
+        verify(library).checkout("Book1");
     }
 }

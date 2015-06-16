@@ -36,21 +36,21 @@ public class LibraryTest {
 
     @Test
     public void shouldBeAbleToCheckOutABookWhenBookIsInLibraryAndNotCheckedOutBefore() {
-        String actualMessage = library.checkout(new Book("Book1", "", 0));
+        String actualMessage = library.checkout("Book1");
 
         assertThat(actualMessage, is(Messages.SUCCESSFUL_CHECKOUT));
     }
 
     @Test
     public void shouldNotBeAbleToCheckoutABookWhenBookIsNotInLibrary() {
-        String actualMessage = library.checkout(new Book("Book4", "", 0));
+        String actualMessage = library.checkout("Book4");
 
         assertThat(actualMessage, is(Messages.BOOK_NOT_AVAILABLE));
     }
 
     @Test
     public void shouldNotBeAbleToCheckoutABookWhenBookIsInLibraryButAlreadyCheckedOut() {
-        String actualMessage = library.checkout(new Book("Book2", "", 0));
+        String actualMessage = library.checkout("Book2");
 
         assertThat(actualMessage, is(Messages.BOOK_NOT_AVAILABLE));
     }
