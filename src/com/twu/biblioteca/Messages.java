@@ -10,4 +10,6 @@ public interface Messages {
     String UNSUCCESSFUL_RETURN = "That is not a valid book to return.";
     String CHECKOUT_BOOK_PROMPT = "Enter Book Name to checkout: ";
     String RETURN_BOOK_PROMPT = "Enter Book Name to Return: ";
+    String CHECKOUT_MOVIE_PROMPT = "Enter Movie Name to checkout: ";
+    String RETURN_MOVIE_PROMPT = "Enter Movie Name to Return: ";
 }
