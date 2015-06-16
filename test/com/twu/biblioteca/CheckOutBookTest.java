@@ -13,26 +13,14 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class CheckOutBookTest {
     @Mock
-    BibliotecaIO bibliotecaIO;
-    @Mock
-    Library library;
+    BooksController booksController;
 
     @Test
-    public void specForCheckOutBookActionResult() {
-        CheckOutBook checkOutBook = new CheckOutBook(bibliotecaIO, library);
+    public void shouldCallCheckoutMethodInBooksController() {
+        CheckOutBook checkOutBook = new CheckOutBook(booksController);
 
         checkOutBook.performAction();
 
-        verify(bibliotecaIO, times(2)).print(Matchers.anyString());
-    }
-
-    @Test
-    public void specForGettingABookByTakingBookTitleFromUser() {
-        CheckOutBook checkOutBook = new CheckOutBook(bibliotecaIO, library);
-        when(bibliotecaIO.read()).thenReturn("Book1");
-
-        checkOutBook.performAction();
-
-        verify(library).checkout("Book1");
+        verify(booksController).checkOut();
     }
 }

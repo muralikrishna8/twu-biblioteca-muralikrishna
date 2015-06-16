@@ -15,9 +15,11 @@ public class BibliotecaInit {
         availableBooks.add(new Book("Book3", "Author3", 2012));
         Library library = new Library(availableBooks, new ArrayList<Book>(), new ArrayList<Book>());
 
+        BooksController booksController = new BooksController(library, bibliotecaIO);
+
         DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaIO, library);
         menuItemListeners.put("1", displayBooksList);
-        menuItemListeners.put("2", new CheckOutBook(bibliotecaIO, library));
+        menuItemListeners.put("2", new CheckOutBook(booksController));
         menuItemListeners.put("3", new ReturnBook(bibliotecaIO, library));
 
         ArrayList<String> menuList = new ArrayList<>();
