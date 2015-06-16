@@ -10,6 +10,11 @@ public class Book {
         this.yearOfPublication = yearOfPublication;
     }
 
+
+    public Boolean matchTitle(String title) {
+        return this.title.equals(title);
+    }
+
     @Override
     public String toString() {
         return String.format("%-50s|    %-40s|     %-7d", title, author, yearOfPublication);
