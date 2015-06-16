@@ -9,13 +9,13 @@ public class BibliotecaInit {
         HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
         BibliotecaIO bibliotecaIO = new BibliotecaIO(new Scanner(System.in));
 
-        ArrayList<Book> availableBooks = new ArrayList<>();
+        ArrayList<LibraryItem> availableBooks = new ArrayList<>();
         availableBooks.add(new Book("Book1", "Author1", 2009));
         availableBooks.add(new Book("Book2", "Author2", 2011));
         availableBooks.add(new Book("Book3", "Author3", 2012));
-        Library library = new Library(availableBooks, new ArrayList<Book>(), new ArrayList<Book>());
+        Section section = new Section(availableBooks, new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>());
 
-        BooksController booksController = new BooksController(library, bibliotecaIO);
+        BooksController booksController = new BooksController(section, bibliotecaIO);
 
         DisplayBooksList displayBooksList = new DisplayBooksList(booksController);
         menuItemListeners.put("1", displayBooksList);

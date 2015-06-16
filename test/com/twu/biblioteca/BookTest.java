@@ -21,7 +21,7 @@ public class BookTest {
     public void shouldGiveWhetherItsTitleMatchesWhenQueried() {
         Book book = new Book("Book1", "Author1", 2009);
 
-        Boolean actual = book.matchTitle("Book1");
+        boolean actual = book.matchTitle("Book1");
 
         assertTrue(actual);
     }

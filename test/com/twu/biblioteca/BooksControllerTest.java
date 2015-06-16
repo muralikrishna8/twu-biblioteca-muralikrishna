@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 public class BooksControllerTest {
 
     @Mock
-    Library library;
+    Section section;
     @Mock
     BibliotecaIO bibliotecaIO;
 
@@ -24,7 +24,7 @@ public class BooksControllerTest {
 
     @Before
     public void setUp() {
-        booksController = new BooksController(library, bibliotecaIO);
+        booksController = new BooksController(section, bibliotecaIO);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class BooksControllerTest {
         when(bibliotecaIO.read()).thenReturn("Book1");
         booksController.checkOut();
 
-        verify(library).checkout("Book1");
+        verify(section).checkout("Book1");
         verify(bibliotecaIO, times(2)).print(Matchers.anyString());
     }
 
@@ -69,7 +69,7 @@ public class BooksControllerTest {
         when(bibliotecaIO.read()).thenReturn("Book1");
         booksController.returnBook();
 
-        verify(library).returnBook("Book1");
+        verify(section).returnBook("Book1");
         verify(bibliotecaIO, times(2)).print(Matchers.anyString());
     }
 
@@ -77,6 +77,6 @@ public class BooksControllerTest {
     public void shouldCallBooksClassInLibrayToDisplayAllBooks() {
         booksController.displayListOfBooks();
 
-        verify(library).books();
+        verify(section).availableItems();
     }
 }

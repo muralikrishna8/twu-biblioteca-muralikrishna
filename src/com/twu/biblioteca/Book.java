@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class Book {
+public class Book implements LibraryItem{
     private String title, author;
     int yearOfPublication;
 
@@ -11,7 +11,7 @@ public class Book {
     }
 
 
-    public Boolean matchTitle(String title) {
+    public boolean matchTitle(String title) {
         return this.title.equals(title);
     }
 

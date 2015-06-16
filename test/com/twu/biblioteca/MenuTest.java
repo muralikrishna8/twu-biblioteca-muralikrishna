@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 public class MenuTest {
 
     @Mock
-    Library library;
+    Section section;
     @Mock
     BibliotecaIO bibliotecaIO;
     @Mock
