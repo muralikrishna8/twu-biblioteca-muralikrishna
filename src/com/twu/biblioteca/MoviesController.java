@@ -15,7 +15,7 @@ public class MoviesController {
         bibliotecaIO.print(section.checkout(movieTitle));
     }
 
-    public void returnBook() {
+    public void returnMovie() {
         bibliotecaIO.print(Messages.RETURN_MOVIE_PROMPT);
         String movieTitle = bibliotecaIO.read();
         bibliotecaIO.print(section.returnBook(movieTitle));

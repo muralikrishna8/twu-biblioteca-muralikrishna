@@ -52,14 +52,14 @@ public class MoviesControllerTest {
 
     @Test
     public void shouldPromptTheUserToEnterMovieToReturnAMovie() {
-        moviesController.returnBook();
+        moviesController.returnMovie();
 
         verify(bibliotecaIO).print(Messages.RETURN_MOVIE_PROMPT);
     }
 
     @Test
     public void shouldReadTheMovieNameWhenReturningMovie() {
-        moviesController.returnBook();
+        moviesController.returnMovie();
 
         verify(bibliotecaIO).read();
     }
@@ -67,7 +67,7 @@ public class MoviesControllerTest {
     @Test
     public void shouldCallReturnMovieMethodInLibrayOnReturningAMovie() {
         when(bibliotecaIO.read()).thenReturn("3 idiots");
-        moviesController.returnBook();
+        moviesController.returnMovie();
 
         verify(section).returnBook("3 idiots");
         verify(bibliotecaIO, times(2)).print(Matchers.anyString());
