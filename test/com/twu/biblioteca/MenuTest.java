@@ -70,7 +70,7 @@ public class MenuTest {
 
     @Test
     public void specForSelectingQuitOptionWillReturnFalse() {
-        when(bibliotecaIO.read()).thenReturn("4");
+        when(bibliotecaIO.read()).thenReturn("7");
 
         boolean doNotQuit = menu.selectFromMenu();
 
