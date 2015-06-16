@@ -20,7 +20,7 @@ public class BibliotecaInit {
         DisplayBooksList displayBooksList = new DisplayBooksList(bibliotecaIO, library);
         menuItemListeners.put("1", displayBooksList);
         menuItemListeners.put("2", new CheckOutBook(booksController));
-        menuItemListeners.put("3", new ReturnBook(bibliotecaIO, library));
+        menuItemListeners.put("3", new ReturnBook(booksController));
 
         ArrayList<String> menuList = new ArrayList<>();
         menuList.add("1. List Books");

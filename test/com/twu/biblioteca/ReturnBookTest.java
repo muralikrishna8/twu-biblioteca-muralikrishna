@@ -13,26 +13,14 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class ReturnBookTest {
     @Mock
-    BibliotecaIO bibliotecaIO;
-    @Mock
-    Library library;
+    BooksController booksController;
 
     @Test
-    public void specForReturnBookActionResult() {
-        ReturnBook returnBook = new ReturnBook(bibliotecaIO, library);
+    public void shouldCallReturnBookMethodOnPerformingAction() {
+        ReturnBook returnBook = new ReturnBook(booksController);
 
         returnBook.performAction();
 
-        verify(bibliotecaIO, times(2)).print(Matchers.anyString());
-    }
-
-    @Test
-    public void specForGettingABookByTakingBookTitleFromUser() {
-        ReturnBook returnBook = new ReturnBook(bibliotecaIO, library);
-        when(bibliotecaIO.read()).thenReturn("Book1");
-
-        returnBook.performAction();
-
-        verify(library).returnBook("Book1");
+        verify(booksController).returnBook();
     }
 }

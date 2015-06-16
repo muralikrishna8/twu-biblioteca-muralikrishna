@@ -31,7 +31,7 @@ public class BooksControllerTest {
     public void shouldPromptTheUserToEnterBookToCheckOut() {
         booksController.checkOut();
 
-        verify(bibliotecaIO).print("Enter Book Name to checkout: ");
+        verify(bibliotecaIO).print(Messages.CHECKOUT_BOOK_PROMPT);
     }
 
     @Test
@@ -47,6 +47,29 @@ public class BooksControllerTest {
         booksController.checkOut();
 
         verify(library).checkout("Book1");
+        verify(bibliotecaIO, times(2)).print(Matchers.anyString());
+    }
+
+    @Test
+    public void shouldPromptTheUserToEnterBookToReturnABook() {
+        booksController.returnBook();
+
+        verify(bibliotecaIO).print(Messages.RETURN_BOOK_PROMPT);
+    }
+
+    @Test
+    public void shouldReadTheBookNameWhenReturningBook() {
+        booksController.returnBook();
+
+        verify(bibliotecaIO).read();
+    }
+
+    @Test
+    public void shouldCallReturnBookMethodInLibrayOnReturningABook() {
+        when(bibliotecaIO.read()).thenReturn("Book1");
+        booksController.returnBook();
+
+        verify(library).returnBook("Book1");
         verify(bibliotecaIO, times(2)).print(Matchers.anyString());
     }
 }

@@ -10,8 +10,14 @@ public class BooksController {
     }
 
     public void checkOut() {
-        bibliotecaIO.print("Enter Book Name to checkout: ");
+        bibliotecaIO.print(Messages.CHECKOUT_BOOK_PROMPT);
         String bookTitle = bibliotecaIO.read();
         bibliotecaIO.print(library.checkout(bookTitle));
+    }
+
+    public void returnBook() {
+        bibliotecaIO.print(Messages.RETURN_BOOK_PROMPT);
+        String bookTitle = bibliotecaIO.read();
+        bibliotecaIO.print(library.returnBook(bookTitle));
     }
 }

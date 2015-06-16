@@ -8,4 +8,6 @@ public interface Messages {
     String BOOK_NOT_AVAILABLE = "That book is not available.";
     String SUCCESSFUL_RETURN = "Thank you for returning the book.";
     String UNSUCCESSFUL_RETURN = "That is not a valid book to return.";
+    String CHECKOUT_BOOK_PROMPT = "Enter Book Name to checkout: ";
+    String RETURN_BOOK_PROMPT = "Enter Book Name to Return: ";
 }
