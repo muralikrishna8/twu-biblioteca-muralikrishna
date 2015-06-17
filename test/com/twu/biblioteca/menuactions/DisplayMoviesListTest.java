@@ -1,5 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.menuactions;
 
+import com.twu.biblioteca.MoviesController;
+import com.twu.biblioteca.menuactions.DisplayMoviesList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

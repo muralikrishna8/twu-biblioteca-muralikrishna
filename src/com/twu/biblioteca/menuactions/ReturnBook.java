@@ -1,6 +1,9 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.menuactions;
 
-public class ReturnBook implements MenuListener{
+import com.twu.biblioteca.BooksController;
+import com.twu.biblioteca.MenuListener;
+
+public class ReturnBook implements MenuListener {
 
     private BooksController booksController;
 
