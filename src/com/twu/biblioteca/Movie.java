@@ -20,6 +20,6 @@ public class Movie implements LibraryItem {
 
     @Override
     public String toString(){
-        return String.format("%s | %d | %s | %s", name, year, director, rating);
+        return String.format("%20s %-20s | %-6d | %-20s | %-6s", " ", name, year, director, rating);
     }
 }

@@ -1,17 +1,21 @@
 package com.twu.biblioteca.menuactions;
 
+import com.twu.biblioteca.Controller;
 import com.twu.biblioteca.MenuListener;
-import com.twu.biblioteca.MoviesController;
+import com.twu.biblioteca.Messages;
+import com.twu.biblioteca.Section;
 
 public class CheckOutMovie implements MenuListener {
-    private MoviesController moviesController;
+    private Controller controller;
+    private Section moviesSection;
 
-    public CheckOutMovie(MoviesController moviesController) {
-        this.moviesController = moviesController;
+    public CheckOutMovie(Controller controller, Section moviesSection) {
+        this.controller = controller;
+        this.moviesSection = moviesSection;
     }
 
     @Override
     public void performAction() {
-        moviesController.checkOut();
+        controller.checkOut(moviesSection, Messages.MOVIE_CHECKOUT_SUCCESSFUL, Messages.MOVIE_CHECKOUT_UNSUCCESSFUL);
     }
 }

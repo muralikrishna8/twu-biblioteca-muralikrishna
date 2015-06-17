@@ -1,7 +1,8 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.BooksController;
-import com.twu.biblioteca.menuactions.CheckOutBook;
+import com.twu.biblioteca.Controller;
+import com.twu.biblioteca.Messages;
+import com.twu.biblioteca.Section;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -12,14 +13,16 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class CheckOutBookTest {
     @Mock
-    BooksController booksController;
+    Controller controller;
+    @Mock
+    Section booksSection;
 
     @Test
     public void shouldCallCheckoutMethodInBooksController() {
-        CheckOutBook checkOutBook = new CheckOutBook(booksController);
+        CheckOutBook checkOutBook = new CheckOutBook(controller, booksSection);
 
         checkOutBook.performAction();
 
-        verify(booksController).checkOut();
+        verify(controller).checkOut(booksSection, Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
     }
 }

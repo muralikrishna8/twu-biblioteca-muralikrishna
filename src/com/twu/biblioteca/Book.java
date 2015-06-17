@@ -17,6 +17,6 @@ public class Book implements LibraryItem{
 
     @Override
     public String toString() {
-        return String.format("%-50s|    %-40s|     %-7d", title, author, yearOfPublication);
+        return String.format("%20s %-20s|    %-20s|     %-7d", "", title, author, yearOfPublication);
     }
 }

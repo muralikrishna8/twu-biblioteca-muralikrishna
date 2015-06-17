@@ -22,24 +22,24 @@ public class Section {
         return available;
     }
 
-    public String checkout(String title) {
+    public String checkout(String title, String successMessage, String errorMessage) {
         searchBooksWithTitle(title, available);
         for(LibraryItem item : searchResult){
             available.remove(item);
             checkedOut.add(item);
-            return Messages.SUCCESSFUL_CHECKOUT;
+            return successMessage;
         }
-        return Messages.BOOK_NOT_AVAILABLE;
+        return errorMessage;
     }
 
-    public String returnBook(String title) {
+    public String returnItem(String title, String successMessage, String errorMessage) {
         searchBooksWithTitle(title, checkedOut);
         for(LibraryItem item : searchResult) {
             checkedOut.remove(item);
             available.add(item);
-            return Messages.SUCCESSFUL_RETURN;
+            return successMessage;
         }
-        return Messages.UNSUCCESSFUL_RETURN;
+        return errorMessage;
     }
 
     private void searchBooksWithTitle(String title, ArrayList<LibraryItem> list) {

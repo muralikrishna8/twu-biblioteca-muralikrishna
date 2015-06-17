@@ -21,7 +21,7 @@
         <javac srcdir="test" destdir="out/test/classes" classpathref="classpath" classpath="out/src/classes"/>
     </target>
 
-    <target name="test" depends="compile,compileTests">
+    <target name="test" depends="clean,compile,compileTests">
         <junit printsummary="yes" failureproperty="test.failed">
             <classpath>
                 <path refid="classpath"/>

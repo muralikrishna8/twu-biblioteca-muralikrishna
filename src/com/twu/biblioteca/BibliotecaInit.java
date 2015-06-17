@@ -17,21 +17,20 @@ public class BibliotecaInit {
         availableBooks.add(new Book("Book3", "Author3", 2012));
         Section booksSection = new Section(availableBooks, new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>());
 
-        BooksController booksController = new BooksController(booksSection, bibliotecaIO);
+        Controller controller = new Controller(bibliotecaIO);
 
         ArrayList<LibraryItem> availableMovies = new ArrayList<>();
         availableMovies.add(new Movie("3 idiots", 2009, "Rajkumar Hirani", "9"));
         availableMovies.add(new Movie("Robo", 2010, "Shankar", "8"));
         availableMovies.add(new Movie("Bahubali", 2015, "S.S RajaMouli", "unrated"));
         Section moviesSection = new Section(availableMovies, new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>());
-        MoviesController moviesController = new MoviesController(moviesSection, bibliotecaIO);
 
-        menuItemListeners.put("1", new DisplayBooksList(booksController));
-        menuItemListeners.put("2", new CheckOutBook(booksController));
-        menuItemListeners.put("3", new ReturnBook(booksController));
-        menuItemListeners.put("4", new DisplayMoviesList(moviesController));
-        menuItemListeners.put("5", new CheckOutMovie(moviesController));
-        menuItemListeners.put("6", new ReturnMovie(moviesController));
+        menuItemListeners.put("1", new DisplayBooksList(controller, booksSection));
+        menuItemListeners.put("2", new CheckOutBook(controller, booksSection));
+        menuItemListeners.put("3", new ReturnBook(controller, booksSection));
+        menuItemListeners.put("4", new DisplayMoviesList(controller, moviesSection));
+        menuItemListeners.put("5", new CheckOutMovie(controller, moviesSection));
+        menuItemListeners.put("6", new ReturnMovie(controller, moviesSection));
 
         ArrayList<String> menuList = new ArrayList<>();
         menuList.add("1. List Books");

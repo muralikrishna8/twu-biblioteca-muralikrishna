@@ -1,18 +1,21 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.BooksController;
+import com.twu.biblioteca.Controller;
 import com.twu.biblioteca.MenuListener;
+import com.twu.biblioteca.Section;
 
 public class DisplayBooksList implements MenuListener {
 
-    private BooksController booksController;
+    private Controller controller;
+    private Section booksSection;
 
-    public DisplayBooksList(BooksController booksController) {
-        this.booksController = booksController;
+    public DisplayBooksList(Controller controller, Section booksSection) {
+        this.controller = controller;
+        this.booksSection = booksSection;
     }
 
     @Override
     public void performAction() {
-        booksController.displayListOfBooks();
+        controller.displayListOfItems(booksSection);
     }
 }

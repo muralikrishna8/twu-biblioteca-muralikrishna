@@ -9,7 +9,7 @@ public class MovieTest {
     public void shouldGiveTheMovieDetails() {
         Movie movie = new Movie("3 idiots", 2009, "Rajkumar Hirani", "9");
 
-        String actualBook = String.format("3 idiots | 2009 | Rajkumar Hirani | 9");
+        String actualBook = String.format("%20s %-20s | %-6d | %-20s | %-6s", " ","3 idiots", 2009, "Rajkumar Hirani", "9");
 
         assertEquals(actualBook, movie.toString());
     }

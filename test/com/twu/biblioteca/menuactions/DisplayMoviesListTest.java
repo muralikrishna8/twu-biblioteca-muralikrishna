@@ -1,7 +1,7 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.MoviesController;
-import com.twu.biblioteca.menuactions.DisplayMoviesList;
+import com.twu.biblioteca.Controller;
+import com.twu.biblioteca.Section;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -12,14 +12,16 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class DisplayMoviesListTest {
     @Mock
-    MoviesController moviesController;
+    Controller controller;
+    @Mock
+    Section moviesSection;
 
     @Test
     public void shouldCallDisplayBooksOnPerformingAction() {
-        DisplayMoviesList displayMoviesList = new DisplayMoviesList(moviesController);
+        DisplayMoviesList displayMoviesList = new DisplayMoviesList(controller, moviesSection);
 
         displayMoviesList.performAction();
 
-        verify(moviesController).displayListOfMovies();
+        verify(controller).displayListOfItems(moviesSection);
     }
 }
