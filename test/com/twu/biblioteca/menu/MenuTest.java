@@ -1,6 +1,11 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.menu;
 
-import com.twu.biblioteca.menuactions.DisplayBooksList;
+import com.twu.biblioteca.BibliotecaIO;
+import com.twu.biblioteca.Messages;
+import com.twu.biblioteca.Section;
+import com.twu.biblioteca.menu.DisplayBooksList;
+import com.twu.biblioteca.menu.Menu;
+import com.twu.biblioteca.menu.MenuListener;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -71,7 +76,7 @@ public class MenuTest {
 
     @Test
     public void specForSelectingQuitOptionWillReturnFalse() {
-        when(bibliotecaIO.read()).thenReturn("7");
+        when(bibliotecaIO.read()).thenReturn(Messages.GUEST_QUIT_OPTION_NUMBER);
 
         boolean doNotQuit = menu.selectFromMenu();
 

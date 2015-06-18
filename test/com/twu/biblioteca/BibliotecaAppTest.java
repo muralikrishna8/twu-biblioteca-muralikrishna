@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menu.MenuDispatcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,15 +14,17 @@ import static org.mockito.Mockito.*;
 public class BibliotecaAppTest {
 
     @Mock
-    Menu menu;
+    MenuDispatcher menu;
     @Mock
     BibliotecaIO bibliotecaIO;
+    @Mock
+    User user;
 
     BibliotecaApp bibliotecaApp;
 
     @Before
     public void setUp() throws Exception {
-        bibliotecaApp = new BibliotecaApp(bibliotecaIO, menu);
+        bibliotecaApp = new BibliotecaApp(bibliotecaIO, menu, user);
     }
 
     @Test
@@ -33,20 +36,14 @@ public class BibliotecaAppTest {
     @Test
     public void specForDisplayingMenuList() {
         bibliotecaApp.init();
-        verify(menu).displayMenu();
-    }
-
-    @Test
-    public void specForDisplayingBooksList() {
-        bibliotecaApp.init();
-        verify(menu).selectFromMenu();
+        verify(user).chooseOption(menu);
     }
 
     @Test
     public void specForDisplayingMenuTillQuitOptionSelected() {
-        when(menu.selectFromMenu()).thenReturn(true, true, false);
+        when(user.chooseOption(menu)).thenReturn(true, true, false);
         bibliotecaApp.init();
 
-        verify(menu, times(3)).displayMenu();
+        verify(user, times(3)).chooseOption(menu);
     }
 }

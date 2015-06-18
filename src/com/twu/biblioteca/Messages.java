@@ -16,4 +16,6 @@ public interface Messages {
     String RETURN_PROMPT = "Enter Name to Return: ";
 
     String USER_DETAILS_PATTERN = "======> %s - %s - %s <======";
+
+    String GUEST_QUIT_OPTION_NUMBER = "3";
 }

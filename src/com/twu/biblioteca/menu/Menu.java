@@ -1,4 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.menu;
+
+import com.twu.biblioteca.BibliotecaIO;
+import com.twu.biblioteca.Messages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +41,6 @@ public class Menu {
     }
 
     private boolean isQuitOption(String option) {
-        return option.equals("7");
+        return option.equals(Messages.GUEST_QUIT_OPTION_NUMBER);
     }
 }

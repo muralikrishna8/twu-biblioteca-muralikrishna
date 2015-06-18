@@ -1,12 +1,16 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menu.MenuDispatcher;
+
 public class BibliotecaApp {
     private BibliotecaIO bibliotecaIO;
-    private Menu menu;
+    private MenuDispatcher menuDispatcher;
+    private User user;
 
-    public BibliotecaApp(BibliotecaIO bibliotecaIO, Menu menu) {
+    public BibliotecaApp(BibliotecaIO bibliotecaIO, MenuDispatcher menuDispatcher, User user) {
         this.bibliotecaIO = bibliotecaIO;
-        this.menu = menu;
+        this.menuDispatcher = menuDispatcher;
+        this.user = user;
     }
 
     private void displayWelcomeMessage() {
@@ -15,8 +19,6 @@ public class BibliotecaApp {
 
     public void init() {
         displayWelcomeMessage();
-        do {
-            menu.displayMenu();
-        } while (menu.selectFromMenu());
+        while (user.chooseOption(menuDispatcher));
     }
 }
