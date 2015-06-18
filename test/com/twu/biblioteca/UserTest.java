@@ -2,7 +2,9 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class UserTest {
@@ -19,5 +21,14 @@ public class UserTest {
         User user = new User("Murali", "abc@def.com", "8392012932", "hyd-1234", "password");
 
         assertTrue(user.verifyCredentials("hyd-1234", "password"));
+    }
+
+    @Test
+    public void shouldGiveTheUserDetails() {
+        User user = new User("Murali", "abc@def.com", "8392012932", "hyd-1234", "password");
+
+        String expectedDetails = String.format(Messages.USER_DETAILS_PATTERN, "Murali", "abc@def.com", "8392012932");
+
+        assertThat(user.toString(), is(expectedDetails));
     }
 }

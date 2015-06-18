@@ -19,4 +19,9 @@ public class User {
         return this.libraryNumber.equals(libraryNumber) &&
                 this.password.equals(password);
     }
+
+    @Override
+    public String toString() {
+        return String.format(Messages.USER_DETAILS_PATTERN, name, email, phone);
+    }
 }

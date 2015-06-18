@@ -14,4 +14,6 @@ public interface Messages {
     String MOVIE_RETURN_UNSUCCESSFUL = "That is not a valid Movie to return.";
     String CHECKOUT_PROMPT = "Enter Name to checkout: ";
     String RETURN_PROMPT = "Enter Name to Return: ";
+
+    String USER_DETAILS_PATTERN = "======> %s - %s - %s <======";
 }
