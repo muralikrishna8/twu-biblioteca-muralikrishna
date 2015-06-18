@@ -7,10 +7,12 @@ public class MenuDispatcher implements UserMenuAction {
 
     private Menu guestMenu;
     private Menu customerMenu;
+    private Menu librarianMenu;
 
-    public MenuDispatcher(Menu guestMenu, Menu customerMenu) {
+    public MenuDispatcher(Menu guestMenu, Menu customerMenu, Menu librarianMenu) {
         this.guestMenu = guestMenu;
         this.customerMenu = customerMenu;
+        this.librarianMenu = librarianMenu;
     }
 
     @Override
@@ -23,5 +25,11 @@ public class MenuDispatcher implements UserMenuAction {
     public boolean chooseOption(Customer customer) {
         customerMenu.displayMenu();
         return customerMenu.selectFromMenu();
+    }
+
+    @Override
+    public boolean chooseOption(Librarian librarian) {
+        librarianMenu.displayMenu();
+        return librarianMenu.selectFromMenu();
     }
 }

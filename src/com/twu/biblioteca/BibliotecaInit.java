@@ -56,7 +56,27 @@ public class BibliotecaInit {
 
         Menu menuCustomer = new Menu(menuItemListenersCustomer, bibliotecaIO, menuListCustomer);
 
-        MenuDispatcher menuDispatcher = new MenuDispatcher(menuGuest, menuCustomer);
+
+        HashMap<String, MenuListener> menuItemListenersLibrarian = new HashMap<>();
+        menuItemListenersLibrarian.put("1", new DisplayBooksList(controller, booksSection));
+        menuItemListenersLibrarian.put("2", new CheckOutBook(controller, booksSection));
+        menuItemListenersLibrarian.put("3", new ReturnBook(controller, booksSection));
+        menuItemListenersLibrarian.put("4", new DisplayMoviesList(controller, moviesSection));
+        menuItemListenersLibrarian.put("5", new CheckOutMovie(controller, moviesSection));
+        menuItemListenersLibrarian.put("6", new ReturnMovie(controller, moviesSection));
+
+        ArrayList<String> menuListLibrarian = new ArrayList<>();
+        menuListLibrarian.add("1. List Books");
+        menuListLibrarian.add("2. Checkout Book");
+        menuListLibrarian.add("3. Return Book");
+        menuListLibrarian.add("4. List Movies");
+        menuListLibrarian.add("5. Checkout Movie");
+        menuListLibrarian.add("6. Return Movie");
+        menuListLibrarian.add(Messages.CUSTOMER_QUIT_OPTION_NUMBER + ". Quit");
+
+        Menu menuLibrarian = new Menu(menuItemListenersLibrarian, bibliotecaIO, menuListLibrarian);
+
+        MenuDispatcher menuDispatcher = new MenuDispatcher(menuGuest, menuCustomer, menuLibrarian);
 
         new BibliotecaApp(bibliotecaIO, menuDispatcher, new Guest()).init();
     }

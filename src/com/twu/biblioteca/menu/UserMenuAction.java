@@ -6,4 +6,5 @@ import com.twu.biblioteca.Guest;
 public interface UserMenuAction {
     boolean chooseOption(Guest guest);
     boolean chooseOption(Customer customer);
+    boolean chooseOption(Librarian librarian);
 }
