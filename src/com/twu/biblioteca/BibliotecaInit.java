@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class BibliotecaInit {
     public static void main(String[] args) {
-        HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
         BibliotecaIO bibliotecaIO = new BibliotecaIO(new Scanner(System.in));
 
         ArrayList<LibraryItem> availableBooks = new ArrayList<>();
@@ -25,17 +24,39 @@ public class BibliotecaInit {
         availableMovies.add(new Movie("Bahubali", 2015, "S.S RajaMouli", "unrated"));
         Section moviesSection = new Section(availableMovies, new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>());
 
-        menuItemListeners.put("1", new DisplayBooksList(controller, booksSection));
-        menuItemListeners.put("2", new DisplayMoviesList(controller, moviesSection));
 
-        ArrayList<String> menuList = new ArrayList<>();
-        menuList.add("1. List Books");
-        menuList.add("2. List Movies");
-        menuList.add(Messages.GUEST_QUIT_OPTION_NUMBER+". Quit");
+        HashMap<String, MenuListener> menuItemListenersGuest = new HashMap<>();
+        menuItemListenersGuest.put("1", new DisplayBooksList(controller, booksSection));
+        menuItemListenersGuest.put("2", new DisplayMoviesList(controller, moviesSection));
 
-        Menu menu = new Menu(menuItemListeners, bibliotecaIO, menuList);
+        ArrayList<String> menuListGuest = new ArrayList<>();
+        menuListGuest.add("1. List Books");
+        menuListGuest.add("2. List Movies");
+        menuListGuest.add(Messages.GUEST_QUIT_OPTION_NUMBER + ". Quit");
 
-        MenuDispatcher menuDispatcher = new MenuDispatcher(menu);
+        Menu menuGuest = new Menu(menuItemListenersGuest, bibliotecaIO, menuListGuest);
+
+
+        HashMap<String, MenuListener> menuItemListenersCustomer = new HashMap<>();
+        menuItemListenersCustomer.put("1", new DisplayBooksList(controller, booksSection));
+        menuItemListenersCustomer.put("2", new CheckOutBook(controller, booksSection));
+        menuItemListenersCustomer.put("3", new ReturnBook(controller, booksSection));
+        menuItemListenersCustomer.put("4", new DisplayMoviesList(controller, moviesSection));
+        menuItemListenersCustomer.put("5", new CheckOutMovie(controller, moviesSection));
+        menuItemListenersCustomer.put("6", new ReturnMovie(controller, moviesSection));
+
+        ArrayList<String> menuListCustomer = new ArrayList<>();
+        menuListCustomer.add("1. List Books");
+        menuListCustomer.add("2. Checkout Book");
+        menuListCustomer.add("3. Return Book");
+        menuListCustomer.add("4. List Movies");
+        menuListCustomer.add("5. Checkout Movie");
+        menuListCustomer.add("6. Return Movie");
+        menuListCustomer.add(Messages.CUSTOMER_QUIT_OPTION_NUMBER + ". Quit");
+
+        Menu menuCustomer = new Menu(menuItemListenersCustomer, bibliotecaIO, menuListCustomer);
+
+        MenuDispatcher menuDispatcher = new MenuDispatcher(menuGuest, menuCustomer);
 
         new BibliotecaApp(bibliotecaIO, menuDispatcher, new Guest()).init();
     }
