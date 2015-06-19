@@ -4,14 +4,17 @@ import java.util.ArrayList;
 
 public class Authenticator {
     private ArrayList<User> users;
-    private boolean isLoggedIn;
 
     public Authenticator(ArrayList<User> users) {
         this.users = users;
     }
 
-    public boolean validateCredential(String libraryNumber, String password) {
-        for (User user : users) return user.verifyCredentials(libraryNumber, password);
-        return false;
+    public User validateCredentials(String libraryNumber, String password) {
+        for (User user : users){
+            if(user.verifyCredentials(libraryNumber, password)){
+                return user;
+            }
+        }
+        return new Guest();
     }
 }

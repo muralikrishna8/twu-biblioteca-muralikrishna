@@ -14,17 +14,18 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ControllerTest {
-
     @Mock
     Section section;
     @Mock
     BibliotecaIO bibliotecaIO;
+    @Mock
+    Authenticator authenticator;
 
     private Controller controller;
 
     @Before
     public void setUp() {
-        controller = new Controller(bibliotecaIO);
+        controller = new Controller(bibliotecaIO, authenticator);
     }
 
     @Test
@@ -47,7 +48,7 @@ public class ControllerTest {
         controller.checkOut(section, Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
 
         verify(section).checkout("Book1", Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
-        verify(bibliotecaIO, times(2)).print(Matchers.anyString());
+        verify(bibliotecaIO, times(4)).print(Matchers.anyString());
     }
 
     @Test
@@ -70,7 +71,7 @@ public class ControllerTest {
         controller.returnItem(section, Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
 
         verify(section).returnItem("Book1", Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
-        verify(bibliotecaIO, times(2)).print(Matchers.anyString());
+        verify(bibliotecaIO, times(4)).print(Matchers.anyString());
     }
 
     @Test

@@ -17,19 +17,25 @@ public class MenuDispatcher implements UserMenuAction {
 
     @Override
     public boolean chooseOption(Guest guest) {
-        guestMenu.displayMenu();
-        return guestMenu.selectFromMenu();
+        do{
+            guestMenu.displayMenu();
+        }while(guestMenu.selectFromMenu());
+        return true;
     }
 
     @Override
     public boolean chooseOption(Customer customer) {
-        customerMenu.displayMenu();
-        return customerMenu.selectFromMenu();
+        do{
+            customerMenu.displayMenu();
+        }while(customerMenu.selectFromMenu());
+        return true;
     }
 
     @Override
     public boolean chooseOption(Librarian librarian) {
-        librarianMenu.displayMenu();
-        return librarianMenu.selectFromMenu();
+        do{
+            librarianMenu.displayMenu();
+        }while(librarianMenu.selectFromMenu());
+        return false;
     }
 }

@@ -3,9 +3,6 @@ package com.twu.biblioteca.menu;
 import com.twu.biblioteca.BibliotecaIO;
 import com.twu.biblioteca.Messages;
 import com.twu.biblioteca.Section;
-import com.twu.biblioteca.menu.DisplayBooksList;
-import com.twu.biblioteca.menu.Menu;
-import com.twu.biblioteca.menu.MenuListener;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,9 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertFalse;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MenuTest {
@@ -71,7 +66,7 @@ public class MenuTest {
         menu.selectFromMenu();
 
         verify(bibliotecaIO).read();
-        verify(bibliotecaIO).print("Select a valid option!");
+        verify(bibliotecaIO).print(Messages.INVALID_OPTION);
     }
 
     @Test

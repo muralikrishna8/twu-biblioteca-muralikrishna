@@ -10,13 +10,21 @@ public class BibliotecaInit {
     public static void main(String[] args) {
         BibliotecaIO bibliotecaIO = new BibliotecaIO(new Scanner(System.in));
 
+        ArrayList<User> users = new ArrayList<>();
+        users.add(new Customer("Murali", "abc@gmail.com", "77878989889", "hyd-1234", "password"));
+        users.add(new Librarian("Librarian", "lib@tw.com", "9433123098", "hyd-1111", "pass"));
+
+        Authenticator authenticator = new Authenticator(users);
+
+        Controller controller = new Controller(bibliotecaIO, authenticator);
+
+
         ArrayList<LibraryItem> availableBooks = new ArrayList<>();
         availableBooks.add(new Book("Book1", "Author1", 2009));
         availableBooks.add(new Book("Book2", "Author2", 2011));
         availableBooks.add(new Book("Book3", "Author3", 2012));
         Section booksSection = new Section(availableBooks, new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>());
 
-        Controller controller = new Controller(bibliotecaIO);
 
         ArrayList<LibraryItem> availableMovies = new ArrayList<>();
         availableMovies.add(new Movie("3 idiots", 2009, "Rajkumar Hirani", "9"));
@@ -32,7 +40,7 @@ public class BibliotecaInit {
         ArrayList<String> menuListGuest = new ArrayList<>();
         menuListGuest.add("1. List Books");
         menuListGuest.add("2. List Movies");
-        menuListGuest.add(Messages.GUEST_QUIT_OPTION_NUMBER + ". Quit");
+        menuListGuest.add(Messages.GUEST_QUIT_OPTION_NUMBER + ". Login");
 
         Menu menuGuest = new Menu(menuItemListenersGuest, bibliotecaIO, menuListGuest);
 
@@ -52,7 +60,7 @@ public class BibliotecaInit {
         menuListCustomer.add("4. List Movies");
         menuListCustomer.add("5. Checkout Movie");
         menuListCustomer.add("6. Return Movie");
-        menuListCustomer.add(Messages.CUSTOMER_QUIT_OPTION_NUMBER + ". Quit");
+        menuListCustomer.add(Messages.CUSTOMER_QUIT_OPTION_NUMBER + ". Logout");
 
         Menu menuCustomer = new Menu(menuItemListenersCustomer, bibliotecaIO, menuListCustomer);
 
@@ -78,6 +86,6 @@ public class BibliotecaInit {
 
         MenuDispatcher menuDispatcher = new MenuDispatcher(menuGuest, menuCustomer, menuLibrarian);
 
-        new BibliotecaApp(bibliotecaIO, menuDispatcher, new Guest()).init();
+        new BibliotecaApp(bibliotecaIO, menuDispatcher, new Guest(), new LoginController(authenticator, bibliotecaIO)).init();
     }
 }

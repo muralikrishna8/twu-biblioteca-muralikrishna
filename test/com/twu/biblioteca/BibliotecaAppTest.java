@@ -19,29 +19,39 @@ public class BibliotecaAppTest {
     BibliotecaIO bibliotecaIO;
     @Mock
     User user;
+    @Mock
+    LoginController loginController;
 
     BibliotecaApp bibliotecaApp;
 
     @Before
     public void setUp() throws Exception {
-        bibliotecaApp = new BibliotecaApp(bibliotecaIO, menu, user);
+        bibliotecaApp = new BibliotecaApp(bibliotecaIO, menu, user, loginController);
     }
 
     @Test
     public void specForDisplayingWelcomeMessage() {
+        when(loginController.login()).thenReturn(user);
+
         bibliotecaApp.init();
+
         verify(bibliotecaIO).print("Welcome to Biblioteca!");
     }
 
     @Test
     public void specForDisplayingMenuList() {
+        when(loginController.login()).thenReturn(user);
+
         bibliotecaApp.init();
+
         verify(user).chooseOption(menu);
     }
 
     @Test
     public void specForDisplayingMenuTillQuitOptionSelected() {
+        when(loginController.login()).thenReturn(user);
         when(user.chooseOption(menu)).thenReturn(true, true, false);
+
         bibliotecaApp.init();
 
         verify(user, times(3)).chooseOption(menu);
