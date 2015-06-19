@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Controller;
+import com.twu.biblioteca.Customer;
 import com.twu.biblioteca.Messages;
 import com.twu.biblioteca.Section;
 import org.junit.Test;
@@ -16,12 +17,14 @@ public class ReturnMovieTest {
     Controller controller;
     @Mock
     Section moviesSection;
+    @Mock
+    Customer customer;
 
     @Test
     public void shouldCallReturnMovieMethodOnPerformingAction() {
         ReturnMovie returnMovie = new ReturnMovie(controller, moviesSection);
 
-        returnMovie.performAction();
+        returnMovie.performAction(customer);
 
         verify(controller).returnItem(moviesSection, Messages.MOVIE_RETURN_SUCCESSFUL, Messages.MOVIE_RETURN_UNSUCCESSFUL);
     }

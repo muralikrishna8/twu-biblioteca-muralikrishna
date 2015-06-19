@@ -2,6 +2,7 @@ package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Controller;
 import com.twu.biblioteca.Section;
+import com.twu.biblioteca.User;
 
 public class DisplayMoviesList implements MenuListener {
     private Controller controller;
@@ -13,7 +14,7 @@ public class DisplayMoviesList implements MenuListener {
     }
 
     @Override
-    public void performAction() {
+    public void performAction(User user) {
         controller.displayListOfItems(moviesSection);
     }
 }

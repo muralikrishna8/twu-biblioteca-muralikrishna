@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Authenticator {
     private ArrayList<User> users;
-
     public Authenticator(ArrayList<User> users) {
         this.users = users;
     }

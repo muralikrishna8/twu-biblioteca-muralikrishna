@@ -44,7 +44,7 @@ public class BibliotecaAppTest {
 
         bibliotecaApp.init();
 
-        verify(user).chooseOption(menu);
+        verify(user, times(2)).chooseOption(menu);
     }
 
     @Test

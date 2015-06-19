@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Controller;
+import com.twu.biblioteca.Customer;
 import com.twu.biblioteca.Messages;
 import com.twu.biblioteca.Section;
 import org.junit.Test;
@@ -16,12 +17,14 @@ public class CheckOutBookTest {
     Controller controller;
     @Mock
     Section booksSection;
+    @Mock
+    Customer customer;
 
     @Test
     public void shouldCallCheckoutMethodInBooksController() {
         CheckOutBook checkOutBook = new CheckOutBook(controller, booksSection);
 
-        checkOutBook.performAction();
+        checkOutBook.performAction(customer);
 
         verify(controller).checkOut(booksSection, Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
     }

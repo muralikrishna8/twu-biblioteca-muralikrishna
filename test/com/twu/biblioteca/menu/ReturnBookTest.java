@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Controller;
+import com.twu.biblioteca.Customer;
 import com.twu.biblioteca.Messages;
 import com.twu.biblioteca.Section;
 import org.junit.Test;
@@ -16,12 +17,14 @@ public class ReturnBookTest {
     Controller controller;
     @Mock
     Section booksSection;
+    @Mock
+    Customer customer;
 
     @Test
     public void shouldCallReturnBookMethodOnPerformingAction() {
         ReturnBook returnBook = new ReturnBook(controller, booksSection);
 
-        returnBook.performAction();
+        returnBook.performAction(customer);
 
         verify(controller).returnItem(booksSection, Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
     }

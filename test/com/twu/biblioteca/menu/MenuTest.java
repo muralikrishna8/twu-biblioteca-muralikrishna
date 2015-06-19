@@ -25,16 +25,16 @@ public class MenuTest {
     BibliotecaIO bibliotecaIO;
     @Mock
     DisplayBooksList displayBooksList;
+    @Mock
+    Librarian user;
 
-    private HashMap<Integer, MenuListener> menuItemListeners;
     private Menu menu;
-    private ArrayList<String> menuList;
 
     @Before
     public void setUp() throws Exception {
         HashMap<String, MenuListener> menuItemListeners = new HashMap<>();
         menuItemListeners.put("1", displayBooksList);
-        menuList = new ArrayList<>();
+        ArrayList<String> menuList = new ArrayList<>();
         menuList.add("1. List Books\n");
         menuList.add("2. Quit\n");
 
@@ -52,10 +52,10 @@ public class MenuTest {
     public void specForSelectingAMenuItemAndPerformingCorrespondingAction() {
         when(bibliotecaIO.read()).thenReturn("1");
 
-        menu.selectFromMenu();
+        menu.selectFromMenu(user);
 
         verify(bibliotecaIO).read();
-        verify(displayBooksList).performAction();
+        verify(displayBooksList).performAction(user);
 
     }
 
@@ -63,7 +63,7 @@ public class MenuTest {
     public void specForSelectingInvalidOptionShouldNotify() {
         when(bibliotecaIO.read()).thenReturn("0");
 
-        menu.selectFromMenu();
+        menu.selectFromMenu(user);
 
         verify(bibliotecaIO).read();
         verify(bibliotecaIO).print(Messages.INVALID_OPTION);
@@ -73,7 +73,7 @@ public class MenuTest {
     public void specForSelectingQuitOptionWillReturnFalse() {
         when(bibliotecaIO.read()).thenReturn(Messages.GUEST_QUIT_OPTION_NUMBER);
 
-        boolean doNotQuit = menu.selectFromMenu();
+        boolean doNotQuit = menu.selectFromMenu(user);
 
         assertFalse(doNotQuit);
     }

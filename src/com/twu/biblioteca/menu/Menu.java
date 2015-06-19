@@ -2,6 +2,7 @@ package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.BibliotecaIO;
 import com.twu.biblioteca.Messages;
+import com.twu.biblioteca.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,13 +27,13 @@ public class Menu {
         bibliotecaIO.print(Messages.SELECT_MENU_ITEM);
     }
 
-    public boolean selectFromMenu() {
+    public boolean selectFromMenu(User user) {
         String option = bibliotecaIO.read();
 
         if (isQuitOption(option)) {
             return false;
         } else if (menuListeners.containsKey(option)) {
-            menuListeners.get(option).performAction();
+            menuListeners.get(option).performAction(user);
         } else {
             bibliotecaIO.print(Messages.INVALID_OPTION);
         }

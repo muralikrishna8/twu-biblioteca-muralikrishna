@@ -19,7 +19,7 @@ public class MenuDispatcher implements UserMenuAction {
     public boolean chooseOption(Guest guest) {
         do{
             guestMenu.displayMenu();
-        }while(guestMenu.selectFromMenu());
+        }while(guestMenu.selectFromMenu(guest));
         return true;
     }
 
@@ -27,7 +27,7 @@ public class MenuDispatcher implements UserMenuAction {
     public boolean chooseOption(Customer customer) {
         do{
             customerMenu.displayMenu();
-        }while(customerMenu.selectFromMenu());
+        }while(customerMenu.selectFromMenu(customer));
         return true;
     }
 
@@ -35,7 +35,7 @@ public class MenuDispatcher implements UserMenuAction {
     public boolean chooseOption(Librarian librarian) {
         do{
             librarianMenu.displayMenu();
-        }while(librarianMenu.selectFromMenu());
+        }while(librarianMenu.selectFromMenu(librarian));
         return false;
     }
 }
