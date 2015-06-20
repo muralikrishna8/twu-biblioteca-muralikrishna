@@ -29,7 +29,7 @@ public class Controller {
         bibliotecaIO.print(section.availableItems());
     }
 
-    public void login(String libraryNumber, String password) {
-        authenticator.validateCredentials(libraryNumber, password);
+    public void displayUserDetails(User user) {
+        bibliotecaIO.print(user.details());
     }
 }

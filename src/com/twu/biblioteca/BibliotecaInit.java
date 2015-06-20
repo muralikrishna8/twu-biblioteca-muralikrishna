@@ -52,6 +52,7 @@ public class BibliotecaInit {
         menuItemListenersCustomer.put("4", new DisplayMoviesList(controller, moviesSection));
         menuItemListenersCustomer.put("5", new CheckOutMovie(controller, moviesSection));
         menuItemListenersCustomer.put("6", new ReturnMovie(controller, moviesSection));
+        menuItemListenersCustomer.put("7", new UserDetails(controller));
 
         ArrayList<String> menuListCustomer = new ArrayList<>();
         menuListCustomer.add("1. List Books");
@@ -60,6 +61,7 @@ public class BibliotecaInit {
         menuListCustomer.add("4. List Movies");
         menuListCustomer.add("5. Checkout Movie");
         menuListCustomer.add("6. Return Movie");
+        menuListCustomer.add("7. Show my details");
         menuListCustomer.add(Messages.CUSTOMER_QUIT_OPTION_NUMBER + ". Logout");
 
         Menu menuCustomer = new Menu(menuItemListenersCustomer, bibliotecaIO, menuListCustomer);
@@ -72,6 +74,8 @@ public class BibliotecaInit {
         menuItemListenersLibrarian.put("4", new DisplayMoviesList(controller, moviesSection));
         menuItemListenersLibrarian.put("5", new CheckOutMovie(controller, moviesSection));
         menuItemListenersLibrarian.put("6", new ReturnMovie(controller, moviesSection));
+        menuItemListenersLibrarian.put("7", new UserDetails(controller));
+
 
         ArrayList<String> menuListLibrarian = new ArrayList<>();
         menuListLibrarian.add("1. List Books");
@@ -80,6 +84,7 @@ public class BibliotecaInit {
         menuListLibrarian.add("4. List Movies");
         menuListLibrarian.add("5. Checkout Movie");
         menuListLibrarian.add("6. Return Movie");
+        menuListLibrarian.add("7. Show my details");
         menuListLibrarian.add(Messages.CUSTOMER_QUIT_OPTION_NUMBER + ". Quit");
 
         Menu menuLibrarian = new Menu(menuItemListenersLibrarian, bibliotecaIO, menuListLibrarian);

@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menu.Librarian;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,8 @@ public class ControllerTest {
     BibliotecaIO bibliotecaIO;
     @Mock
     Authenticator authenticator;
+    @Mock
+    Customer customer;
 
     private Controller controller;
 
@@ -79,5 +82,12 @@ public class ControllerTest {
         controller.displayListOfItems(section);
 
         verify(section).availableItems();
+    }
+
+    @Test
+    public void shouldCallUserClassForPrintingUserDetails() {
+        controller.displayUserDetails(customer);
+
+        verify(bibliotecaIO).print(customer.details());
     }
 }
