@@ -1,9 +1,7 @@
 package com.twu.biblioteca.menu;
 
-import com.twu.biblioteca.Controller;
-import com.twu.biblioteca.Customer;
-import com.twu.biblioteca.Messages;
-import com.twu.biblioteca.Section;
+import com.twu.biblioteca.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -19,13 +17,29 @@ public class CheckOutMovieTest {
     Section moviesSection;
     @Mock
     Customer customer;
+    @Mock
+    BibliotecaIO bibliotecaIO;
+    @Mock
+    CheckOutHistory checkOutHistory;
+
+    private CheckOutMovie checkOutMovie;
+
+    @Before
+    public void setUp() {
+        checkOutMovie = new CheckOutMovie(controller, moviesSection, bibliotecaIO, checkOutHistory);
+    }
 
     @Test
-    public void shouldCallCheckoutMethodInMoviesController() {
-        CheckOutMovie checkOutMovie = new CheckOutMovie(controller, moviesSection);
-
+    public void shouldPromptForTheMovieNameToCheckout() {
         checkOutMovie.performAction(customer);
 
-        verify(controller).checkOut(moviesSection, Messages.MOVIE_CHECKOUT_SUCCESSFUL, Messages.MOVIE_CHECKOUT_UNSUCCESSFUL);
+        verify(bibliotecaIO).print(Messages.CHECKOUT_PROMPT);
+    }
+
+    @Test
+    public void shouldReadTheMovieNameToCheckout() {
+        checkOutMovie.performAction(customer);
+
+        verify(bibliotecaIO).read();
     }
 }

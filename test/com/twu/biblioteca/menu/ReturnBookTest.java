@@ -1,9 +1,7 @@
 package com.twu.biblioteca.menu;
 
-import com.twu.biblioteca.Controller;
-import com.twu.biblioteca.Customer;
-import com.twu.biblioteca.Messages;
-import com.twu.biblioteca.Section;
+import com.twu.biblioteca.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -19,13 +17,29 @@ public class ReturnBookTest {
     Section booksSection;
     @Mock
     Customer customer;
+    @Mock
+    BibliotecaIO bibliotecaIO;
+    @Mock
+    CheckOutHistory checkOutHistory;
+
+    private ReturnBook returnBook;
+
+    @Before
+    public void setUp() {
+        returnBook = new ReturnBook(controller, booksSection, bibliotecaIO, checkOutHistory);
+    }
 
     @Test
-    public void shouldCallReturnBookMethodOnPerformingAction() {
-        ReturnBook returnBook = new ReturnBook(controller, booksSection);
-
+    public void shouldPromptForTheMovieNameToCheckout() {
         returnBook.performAction(customer);
 
-        verify(controller).returnItem(booksSection, Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
+        verify(bibliotecaIO).print(Messages.CHECKOUT_PROMPT);
+    }
+
+    @Test
+    public void shouldReadTheMovieNameToCheckout() {
+        returnBook.performAction(customer);
+
+        verify(bibliotecaIO).read();
     }
 }

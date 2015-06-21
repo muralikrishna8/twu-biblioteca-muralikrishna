@@ -16,7 +16,9 @@ public class BibliotecaInit {
 
         Authenticator authenticator = new Authenticator(users);
 
-        Controller controller = new Controller(bibliotecaIO, new CheckOutHistory());
+        CheckOutHistory checkOutHistory = new CheckOutHistory();
+
+        Controller controller = new Controller(bibliotecaIO, checkOutHistory);
 
 
         ArrayList<LibraryItem> availableBooks = new ArrayList<>();
@@ -47,11 +49,11 @@ public class BibliotecaInit {
 
         HashMap<String, MenuListener> menuItemListenersCustomer = new HashMap<>();
         menuItemListenersCustomer.put("1", new DisplayBooksList(controller, booksSection));
-        menuItemListenersCustomer.put("2", new CheckOutBook(controller, booksSection));
-        menuItemListenersCustomer.put("3", new ReturnBook(controller, booksSection));
+        menuItemListenersCustomer.put("2", new CheckOutBook(controller, booksSection, bibliotecaIO, checkOutHistory));
+        menuItemListenersCustomer.put("3", new ReturnBook(controller, booksSection, bibliotecaIO, checkOutHistory));
         menuItemListenersCustomer.put("4", new DisplayMoviesList(controller, moviesSection));
-        menuItemListenersCustomer.put("5", new CheckOutMovie(controller, moviesSection));
-        menuItemListenersCustomer.put("6", new ReturnMovie(controller, moviesSection));
+        menuItemListenersCustomer.put("5", new CheckOutMovie(controller, moviesSection, bibliotecaIO, checkOutHistory));
+        menuItemListenersCustomer.put("6", new ReturnMovie(controller, moviesSection, bibliotecaIO, checkOutHistory));
         menuItemListenersCustomer.put("7", new UserDetails(controller));
 
         ArrayList<String> menuListCustomer = new ArrayList<>();
@@ -69,12 +71,14 @@ public class BibliotecaInit {
 
         HashMap<String, MenuListener> menuItemListenersLibrarian = new HashMap<>();
         menuItemListenersLibrarian.put("1", new DisplayBooksList(controller, booksSection));
-        menuItemListenersLibrarian.put("2", new CheckOutBook(controller, booksSection));
-        menuItemListenersLibrarian.put("3", new ReturnBook(controller, booksSection));
+        menuItemListenersLibrarian.put("2", new CheckOutBook(controller, booksSection, bibliotecaIO, checkOutHistory));
+        menuItemListenersLibrarian.put("3", new ReturnBook(controller, booksSection, bibliotecaIO, checkOutHistory));
         menuItemListenersLibrarian.put("4", new DisplayMoviesList(controller, moviesSection));
-        menuItemListenersLibrarian.put("5", new CheckOutMovie(controller, moviesSection));
-        menuItemListenersLibrarian.put("6", new ReturnMovie(controller, moviesSection));
+        menuItemListenersLibrarian.put("5", new CheckOutMovie(controller, moviesSection, bibliotecaIO, checkOutHistory));
+        menuItemListenersLibrarian.put("6", new ReturnMovie(controller, moviesSection, bibliotecaIO, checkOutHistory));
         menuItemListenersLibrarian.put("7", new UserDetails(controller));
+        menuItemListenersLibrarian.put("9", new CheckedOutBooksList(controller));
+        menuItemListenersLibrarian.put("10", new CheckedOutMoviesList(controller));
 
 
         ArrayList<String> menuListLibrarian = new ArrayList<>();
@@ -86,6 +90,8 @@ public class BibliotecaInit {
         menuListLibrarian.add("6. Return Movie");
         menuListLibrarian.add("7. Show my details");
         menuListLibrarian.add(Messages.CUSTOMER_QUIT_OPTION_NUMBER + ". Quit");
+        menuListLibrarian.add("9. Show Who Checkedout Books");
+        menuListLibrarian.add("10. Show Who Checkedout Movies");
 
         Menu menuLibrarian = new Menu(menuItemListenersLibrarian, bibliotecaIO, menuListLibrarian);
 

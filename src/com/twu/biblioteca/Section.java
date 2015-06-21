@@ -22,32 +22,32 @@ public class Section {
         return available;
     }
 
-    public String checkout(String title, String successMessage, String errorMessage) {
-        searchBooksWithTitle(title, available);
-        for(LibraryItem item : searchResult){
-            available.remove(item);
-            checkedOut.add(item);
-            return successMessage;
-        }
-        return errorMessage;
+    public void checkOut(LibraryItem libraryItem) {
+        available.remove(libraryItem);
+        checkedOut.add(libraryItem);
     }
 
-    public String returnItem(String title, String successMessage, String errorMessage) {
-        searchBooksWithTitle(title, checkedOut);
-        for(LibraryItem item : searchResult) {
-            checkedOut.remove(item);
-            available.add(item);
-            return successMessage;
-        }
-        return errorMessage;
+    public void returnItem(LibraryItem libraryItem) {
+        checkedOut.remove(libraryItem);
+        available.add(libraryItem);
     }
 
-    private void searchBooksWithTitle(String title, ArrayList<LibraryItem> list) {
+    public ArrayList<LibraryItem> searchItemsToCheckOut(String title) {
+        return searchItemsWithTitle(title, this.available);
+    }
+
+    public ArrayList<LibraryItem> searchItemsToReturn(String title) {
+        return searchItemsWithTitle(title, this.checkedOut);
+    }
+
+    private ArrayList<LibraryItem> searchItemsWithTitle(String title, ArrayList<LibraryItem> list) {
         searchResult.clear();
         for (LibraryItem item : list) {
             if(item.matchTitle(title)) {
                 searchResult.add(item);
             }
         }
+
+        return searchResult;
     }
 }

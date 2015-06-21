@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 public class Controller {
     private BibliotecaIO bibliotecaIO;
     private CheckOutHistory checkOutHistory;
@@ -9,20 +11,20 @@ public class Controller {
         this.checkOutHistory = checkOutHistory;
     }
 
-    public void checkOut(Section section, String successMessage, String errorMessage) {
-        bibliotecaIO.print(Messages.CHECKOUT_PROMPT);
-        String bookTitle = bibliotecaIO.read();
-        bibliotecaIO.print("\n--------------------------");
-        bibliotecaIO.print(section.checkout(bookTitle, successMessage, errorMessage));
-        bibliotecaIO.print("--------------------------");
+    public ArrayList<LibraryItem> searchToCheckoutItem(Section section, String title) {
+        return section.searchItemsToCheckOut(title);
     }
 
-    public void returnItem(Section section, String successMessage, String errorMessage) {
-        bibliotecaIO.print(Messages.RETURN_PROMPT);
-        String bookTitle = bibliotecaIO.read();
-        bibliotecaIO.print("\n--------------------------");
-        bibliotecaIO.print(section.returnItem(bookTitle, successMessage, errorMessage));
-        bibliotecaIO.print("--------------------------");
+    public ArrayList<LibraryItem> searchToReturnItem(Section section, String title) {
+        return section.searchItemsToReturn(title);
+    }
+
+    public void checkOut(Section section, LibraryItem libraryItem) {
+        section.checkOut(libraryItem);
+    }
+
+    public void returnItem(Section section, LibraryItem libraryItem) {
+        section.returnItem(libraryItem);
     }
 
     public void displayListOfItems(Section section) {
@@ -31,5 +33,13 @@ public class Controller {
 
     public void displayUserDetails(User user) {
         bibliotecaIO.print(user.details());
+    }
+
+    public void displayCheckedOutBooksList() {
+        bibliotecaIO.print(checkOutHistory.getWhoCheckedOutBooks());
+    }
+
+    public void displayCheckedOutMoviesList() {
+        bibliotecaIO.print(checkOutHistory.getWhoCheckedOutMovies());
     }
 }

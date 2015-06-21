@@ -22,6 +22,18 @@ public class CheckOutHistory {
         }
     }
 
+    public void removeCheckedOutBook(User user, Book book) {
+        if (checkedOutBooks.containsKey(user)) {
+            checkedOutBooks.get(user).remove(book);
+        }
+    }
+
+    public void removeCheckedOutMovie(User user, Movie movie) {
+        if(checkedOutMovies.containsKey(user)) {
+            checkedOutMovies.get(user).remove(movie);
+        }
+    }
+
     public void addCheckedOutMovie(User user, Movie movie) {
         if (checkedOutMovies.containsKey(user))
             checkedOutMovies.get(user).add(movie);

@@ -11,15 +11,21 @@ import static org.junit.Assert.assertThat;
 public class SectionTest {
 
     private Section section;
+    private Book book1;
+    private Book book2;
+    private Book book3;
 
     @Before
     public void setUp() throws Exception {
         ArrayList<LibraryItem> availableBooks = new ArrayList<>();
         ArrayList<LibraryItem> checkedOutBooks = new ArrayList<>();
-        availableBooks.add(new Book("Book1", "Author1", 2009));
-        availableBooks.add(new Book("Book3", "Author3", 2012));
+        book1 = new Book("Book1", "Author1", 2009);
+        availableBooks.add(book1);
+        book3 = new Book("Book3", "Author3", 2012);
+        availableBooks.add(book3);
 
-        checkedOutBooks.add(new Book("Book2", "Author2", 2011));
+        book2 = new Book("Book2", "Author2", 2011);
+        checkedOutBooks.add(book2);
         section = new Section(availableBooks, checkedOutBooks, new ArrayList<LibraryItem>());
     }
 
@@ -27,52 +33,30 @@ public class SectionTest {
     public void specToCheckBooksListInLibrary() {
         String actualBooksList = section.availableItems();
         String expected = String.format("%20s %-20s|    %-20s|     %-7d\n" +
-                                        "%20s %-20s|    %-20s|     %-7d\n",
-                                        "", "Book1", "Author1", 2009,
-                                        "", "Book3", "Author3", 2012);
+                        "%20s %-20s|    %-20s|     %-7d\n",
+                "", "Book1", "Author1", 2009,
+                "", "Book3", "Author3", 2012);
 
         assertThat(actualBooksList, is(expected));
     }
 
     @Test
-    public void shouldBeAbleToCheckOutABookWhenBookIsInLibraryAndNotCheckedOutBefore() {
-        String actualMessage = section.checkout("Book1", Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
+    public void specToCheckForReturningSearchedResultsForCheckOut() {
+        ArrayList<LibraryItem> expected = new ArrayList<>();
+        expected.add(book1);
 
-        assertThat(actualMessage, is(Messages.BOOK_CHECKOUT_SUCCESSFUL));
+        ArrayList<LibraryItem> actual = section.searchItemsToCheckOut("Book1");
+
+        assertThat(actual, is(expected));
     }
 
     @Test
-    public void shouldNotBeAbleToCheckoutABookWhenBookIsNotInLibrary() {
-        String actualMessage = section.checkout("Book4", Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
+    public void specToCheckForReturningSearchedResultsForReturningItem() {
+        ArrayList<LibraryItem> expected = new ArrayList<>();
+        expected.add(book2);
 
-        assertThat(actualMessage, is(Messages.BOOK_CHECKOUT_UNSUCCESSFUL));
-    }
+        ArrayList<LibraryItem> actual = section.searchItemsToReturn("Book2");
 
-    @Test
-    public void shouldNotBeAbleToCheckoutABookWhenBookIsInLibraryButAlreadyCheckedOut() {
-        String actualMessage = section.checkout("Book2", Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
-
-        assertThat(actualMessage, is(Messages.BOOK_CHECKOUT_UNSUCCESSFUL));
-    }
-
-    @Test
-    public void shouldNotBeAbleToReturnABookWhenBookIsNotInLibrary() {
-        String actualMessage = section.returnItem("Book4", Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
-
-        assertThat(actualMessage, is(Messages.BOOK_RETURN_UNSUCCESSFUL));
-    }
-
-    @Test
-    public void shouldBeAbleToReturnABookWhenBookIsInLibraryButAlreadyCheckedOut() {
-        String actualMessage = section.returnItem("Book2", Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
-
-        assertThat(actualMessage, is(Messages.BOOK_RETURN_SUCCESSFUL));
-    }
-
-    @Test
-    public void shouldNotBeAbleToReturnABookWhenBookIsInLibraryAndNotCheckedOutBefore() {
-        String actualMessage = section.returnItem("Book1", Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
-
-        assertThat(actualMessage, is(Messages.BOOK_RETURN_UNSUCCESSFUL));
+        assertThat(actual, is(expected));
     }
 }

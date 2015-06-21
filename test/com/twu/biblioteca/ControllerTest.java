@@ -22,58 +22,14 @@ public class ControllerTest {
     Authenticator authenticator;
     @Mock
     Customer customer;
+    @Mock
+    CheckOutHistory checkOutHistory;
 
     private Controller controller;
 
     @Before
     public void setUp() {
-        controller = new Controller(bibliotecaIO, new CheckOutHistory());
-    }
-
-    @Test
-    public void shouldPromptTheUserToEnterBookToCheckOut() {
-        controller.checkOut(section, Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
-
-        verify(bibliotecaIO).print(Messages.CHECKOUT_PROMPT);
-    }
-
-    @Test
-    public void shouldReadTheBookNameWhenCheckOutMethodCalled() {
-        controller.checkOut(section, Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
-
-        verify(bibliotecaIO).read();
-    }
-
-    @Test
-    public void shouldCallCheckoutMethodInLibraryOnCheckOut() {
-        when(bibliotecaIO.read()).thenReturn("Book1");
-        controller.checkOut(section, Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
-
-        verify(section).checkout("Book1", Messages.BOOK_CHECKOUT_SUCCESSFUL, Messages.BOOK_CHECKOUT_UNSUCCESSFUL);
-        verify(bibliotecaIO, times(4)).print(Matchers.anyString());
-    }
-
-    @Test
-    public void shouldPromptTheUserToEnterBookToReturnABook() {
-        controller.returnItem(section, Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
-
-        verify(bibliotecaIO).print(Messages.RETURN_PROMPT);
-    }
-
-    @Test
-    public void shouldReadTheBookNameWhenReturningBook() {
-        controller.returnItem(section, Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
-
-        verify(bibliotecaIO).read();
-    }
-
-    @Test
-    public void shouldCallReturnBookMethodInLibraryOnReturningABook() {
-        when(bibliotecaIO.read()).thenReturn("Book1");
-        controller.returnItem(section, Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
-
-        verify(section).returnItem("Book1", Messages.BOOK_RETURN_SUCCESSFUL, Messages.BOOK_RETURN_UNSUCCESSFUL);
-        verify(bibliotecaIO, times(4)).print(Matchers.anyString());
+        controller = new Controller(bibliotecaIO, checkOutHistory);
     }
 
     @Test
@@ -88,5 +44,33 @@ public class ControllerTest {
         controller.displayUserDetails(customer);
 
         verify(bibliotecaIO).print(customer.details());
+    }
+
+    @Test
+    public void shouldPrintTheCheckedOutBooksList() {
+        controller.displayCheckedOutBooksList();
+
+        verify(bibliotecaIO).print(checkOutHistory.getWhoCheckedOutBooks());
+    }
+
+    @Test
+    public void shouldPrintTheCheckedOutMoviesList() {
+        controller.displayCheckedOutMoviesList();
+
+        verify(bibliotecaIO).print(checkOutHistory.getWhoCheckedOutMovies());
+    }
+
+    @Test
+    public void shouldDelegateSerchForCheckoutToSection() {
+        controller.searchToCheckoutItem(section, "Book1");
+
+        verify(section).searchItemsToCheckOut("Book1");
+    }
+
+    @Test
+    public void shouldDelegateSerchForReturnItemToSection() {
+        controller.searchToReturnItem(section, "Book1");
+
+        verify(section).searchItemsToReturn("Book1");
     }
 }
