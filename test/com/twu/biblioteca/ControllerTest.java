@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menu.Librarian;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +27,7 @@ public class ControllerTest {
 
     @Before
     public void setUp() {
-        controller = new Controller(bibliotecaIO, authenticator);
+        controller = new Controller(bibliotecaIO, new CheckOutHistory());
     }
 
     @Test

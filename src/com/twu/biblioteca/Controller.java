@@ -2,11 +2,11 @@ package com.twu.biblioteca;
 
 public class Controller {
     private BibliotecaIO bibliotecaIO;
-    private Authenticator authenticator;
+    private CheckOutHistory checkOutHistory;
 
-    public Controller(BibliotecaIO bibliotecaIO, Authenticator authenticator) {
+    public Controller(BibliotecaIO bibliotecaIO, CheckOutHistory checkOutHistory) {
         this.bibliotecaIO = bibliotecaIO;
-        this.authenticator = authenticator;
+        this.checkOutHistory = checkOutHistory;
     }
 
     public void checkOut(Section section, String successMessage, String errorMessage) {

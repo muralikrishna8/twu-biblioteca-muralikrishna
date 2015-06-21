@@ -16,7 +16,7 @@ public class BibliotecaInit {
 
         Authenticator authenticator = new Authenticator(users);
 
-        Controller controller = new Controller(bibliotecaIO, authenticator);
+        Controller controller = new Controller(bibliotecaIO, new CheckOutHistory());
 
 
         ArrayList<LibraryItem> availableBooks = new ArrayList<>();
