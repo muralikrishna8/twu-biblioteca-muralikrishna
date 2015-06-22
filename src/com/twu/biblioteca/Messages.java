@@ -19,6 +19,5 @@ public interface Messages {
 
     String USER_DETAILS_PATTERN = "======> %s - %s - %s <======";
 
-    String GUEST_QUIT_OPTION_NUMBER = "8";
-    String CUSTOMER_QUIT_OPTION_NUMBER = "8";
+    String QUIT_OR_LOGIN_LOGOUT_OPTION_NUMBER = "8";
 }

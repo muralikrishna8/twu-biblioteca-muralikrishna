@@ -1,6 +1,6 @@
-package com.twu.biblioteca.menu;
+package com.twu.biblioteca;
 
-import com.twu.biblioteca.User;
+import com.twu.biblioteca.menu.MenuDispatcher;
 
 public class Librarian extends User{
     public Librarian(String name, String email, String phone, String libraryNumber, String password) {

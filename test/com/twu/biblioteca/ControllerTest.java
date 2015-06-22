@@ -24,6 +24,8 @@ public class ControllerTest {
     Customer customer;
     @Mock
     CheckOutHistory checkOutHistory;
+    @Mock
+    LibraryItem book;
 
     private Controller controller;
 
@@ -61,16 +63,44 @@ public class ControllerTest {
     }
 
     @Test
-    public void shouldDelegateSerchForCheckoutToSection() {
+    public void shouldDelegateCheckOutToSection() {
+        controller.checkOut(section, book);
+
+        verify(section).checkOut(book);
+    }
+
+    @Test
+    public void shouldDelegateReturnToSection() {
+        controller.returnItem(section, book);
+
+        verify(section).returnItem(book);
+    }
+
+    @Test
+    public void shouldDelegateSearchForCheckoutToSection() {
         controller.searchToCheckoutItem(section, "Book1");
 
         verify(section).searchItemsToCheckOut("Book1");
     }
 
     @Test
-    public void shouldDelegateSerchForReturnItemToSection() {
+    public void shouldDelegateSearchForReturnItemToSection() {
         controller.searchToReturnItem(section, "Book1");
 
         verify(section).searchItemsToReturn("Book1");
+    }
+
+    @Test
+    public void shouldDisplayWhoCheckedOutBooks() {
+        controller.displayCheckedOutBooksList();
+
+        verify(bibliotecaIO).print(checkOutHistory.getWhoCheckedOutBooks());
+    }
+
+    @Test
+    public void shouldDisplayWhoCheckedOutMovies() {
+        controller.displayCheckedOutMoviesList();
+
+        verify(bibliotecaIO).print(checkOutHistory.getWhoCheckedOutMovies());
     }
 }

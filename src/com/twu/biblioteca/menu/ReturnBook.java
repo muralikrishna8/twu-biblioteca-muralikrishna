@@ -21,7 +21,7 @@ public class ReturnBook implements MenuListener {
 
     @Override
     public void performAction(User user) {
-        bibliotecaIO.print(Messages.CHECKOUT_PROMPT);
+        bibliotecaIO.print(Messages.RETURN_PROMPT);
         String bookTitle = bibliotecaIO.read();
         ArrayList<LibraryItem> books = controller.searchToReturnItem(booksSection, bookTitle);
         for (LibraryItem book : books) {

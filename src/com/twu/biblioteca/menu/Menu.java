@@ -42,6 +42,6 @@ public class Menu {
     }
 
     private boolean isQuitOption(String option) {
-        return option.equals(Messages.GUEST_QUIT_OPTION_NUMBER);
+        return option.equals(Messages.QUIT_OR_LOGIN_LOGOUT_OPTION_NUMBER);
     }
 }

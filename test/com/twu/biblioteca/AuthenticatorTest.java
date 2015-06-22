@@ -1,9 +1,7 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menu.Librarian;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
 import java.util.ArrayList;
 
@@ -36,5 +34,12 @@ public class AuthenticatorTest {
         User actual = authenticator.validateCredentials("hyd-1111", "pass");
 
         assertEquals(actual, librarian);
+    }
+
+    @Test
+    public void shouldValidateTheUserCredentialsAndGiveTheGuestIfCredentialDoesNotMatch() {
+        User actual = authenticator.validateCredentials("some", "some");
+
+        assertTrue(actual instanceof Guest);
     }
 }

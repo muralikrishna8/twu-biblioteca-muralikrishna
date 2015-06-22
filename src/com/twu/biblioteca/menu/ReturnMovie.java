@@ -19,7 +19,7 @@ public class ReturnMovie implements MenuListener {
 
     @Override
     public void performAction(User user) {
-        bibliotecaIO.print(Messages.CHECKOUT_PROMPT);
+        bibliotecaIO.print(Messages.RETURN_PROMPT);
         String movieTitle = bibliotecaIO.read();
         ArrayList<LibraryItem> movies = controller.searchToReturnItem(moviesSection, movieTitle);
         for (LibraryItem movie : movies) {

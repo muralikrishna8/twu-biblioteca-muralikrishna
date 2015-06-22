@@ -42,7 +42,7 @@ public class BibliotecaInit {
         ArrayList<String> menuListGuest = new ArrayList<>();
         menuListGuest.add("1. List Books");
         menuListGuest.add("2. List Movies");
-        menuListGuest.add(Messages.GUEST_QUIT_OPTION_NUMBER + ". Login");
+        menuListGuest.add(Messages.QUIT_OR_LOGIN_LOGOUT_OPTION_NUMBER + ". Login");
 
         Menu menuGuest = new Menu(menuItemListenersGuest, bibliotecaIO, menuListGuest);
 
@@ -64,7 +64,7 @@ public class BibliotecaInit {
         menuListCustomer.add("5. Checkout Movie");
         menuListCustomer.add("6. Return Movie");
         menuListCustomer.add("7. Show my details");
-        menuListCustomer.add(Messages.CUSTOMER_QUIT_OPTION_NUMBER + ". Logout");
+        menuListCustomer.add(Messages.QUIT_OR_LOGIN_LOGOUT_OPTION_NUMBER + ". Logout");
 
         Menu menuCustomer = new Menu(menuItemListenersCustomer, bibliotecaIO, menuListCustomer);
 
@@ -89,7 +89,7 @@ public class BibliotecaInit {
         menuListLibrarian.add("5. Checkout Movie");
         menuListLibrarian.add("6. Return Movie");
         menuListLibrarian.add("7. Show my details");
-        menuListLibrarian.add(Messages.CUSTOMER_QUIT_OPTION_NUMBER + ". Quit");
+        menuListLibrarian.add(Messages.QUIT_OR_LOGIN_LOGOUT_OPTION_NUMBER + ". Quit");
         menuListLibrarian.add("9. Show Who Checkedout Books");
         menuListLibrarian.add("10. Show Who Checkedout Movies");
 

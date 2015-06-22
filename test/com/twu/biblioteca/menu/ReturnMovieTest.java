@@ -7,7 +7,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ReturnMovieTest {
@@ -17,6 +20,8 @@ public class ReturnMovieTest {
     Section moviesSection;
     @Mock
     Customer customer;
+    @Mock
+    Movie movie;
     @Mock
     BibliotecaIO bibliotecaIO;
     @Mock
@@ -30,16 +35,61 @@ public class ReturnMovieTest {
     }
 
     @Test
-    public void shouldPromptForTheMovieNameToCheckout() {
+    public void shouldPromptForTheMovieNameToReturn() {
         returnMovie.performAction(customer);
 
-        verify(bibliotecaIO).print(Messages.CHECKOUT_PROMPT);
+        verify(bibliotecaIO).print(Messages.RETURN_PROMPT);
     }
 
     @Test
-    public void shouldReadTheMovieNameToCheckout() {
+    public void shouldReadTheMovieNameToReturn() {
         returnMovie.performAction(customer);
 
         verify(bibliotecaIO).read();
+    }
+
+    @Test
+    public void shouldGetTheSearchedMoviesListForReturning() {
+        when(bibliotecaIO.read()).thenReturn("Movie");
+        returnMovie.performAction(customer);
+
+        verify(controller).searchToReturnItem(moviesSection, "Movie");
+    }
+
+    @Test
+    public void shouldDelegateTheReturnMovieToController() {
+        ArrayList<LibraryItem> moviesToReturn = new ArrayList<>();
+        moviesToReturn.add(movie);
+        when(bibliotecaIO.read()).thenReturn("Movie");
+        when(controller.searchToReturnItem(moviesSection, "Movie")).thenReturn(moviesToReturn);
+
+        returnMovie.performAction(customer);
+
+        verify(controller).returnItem(moviesSection, movie);
+        verify(bibliotecaIO).print(Messages.MOVIE_RETURN_SUCCESSFUL);
+    }
+
+    @Test
+    public void shouldRemoveTheMovieFromTheCheckoutHistory() {
+        ArrayList<LibraryItem> moviesToReturn = new ArrayList<>();
+        moviesToReturn.add(movie);
+        when(bibliotecaIO.read()).thenReturn("Movie");
+        when(controller.searchToReturnItem(moviesSection, "Movie")).thenReturn(moviesToReturn);
+
+        returnMovie.performAction(customer);
+
+        verify(checkOutHistory).removeCheckedOutMovie(customer, movie);
+    }
+
+    @Test
+    public void shouldPrintUnsuccessfulWhenMovieNotFound() {
+        ArrayList<LibraryItem> moviesToReturn = new ArrayList<>();
+        when(bibliotecaIO.read()).thenReturn("Movie");
+        when(controller.searchToReturnItem(moviesSection, "Movie")).thenReturn(moviesToReturn);
+
+        returnMovie.performAction(customer);
+
+        verify(bibliotecaIO).print(Messages.RETURN_PROMPT);
+        verify(bibliotecaIO).print(Messages.MOVIE_RETURN_UNSUCCESSFUL);
     }
 }
