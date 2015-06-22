@@ -59,4 +59,24 @@ public class SectionTest {
 
         assertThat(actual, is(expected));
     }
+
+    @Test
+    public void specToCheckTheSectionShouldRemoveItemAfterCheckOut() {
+        ArrayList<LibraryItem> expected = new ArrayList<>();
+        section.checkOut(book1);
+
+        ArrayList<LibraryItem> actual = section.searchItemsToCheckOut("Book1");
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void specToCheckTheSectionShouldAddItemAfterReturning() {
+        ArrayList<LibraryItem> expected = new ArrayList<>();
+        section.returnItem(book2);
+
+        ArrayList<LibraryItem> actual = section.searchItemsToReturn("Book2");
+
+        assertThat(actual, is(expected));
+    }
 }
