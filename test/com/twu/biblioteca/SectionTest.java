@@ -32,8 +32,8 @@ public class SectionTest {
     @Test
     public void specToCheckBooksListInLibrary() {
         String actualBooksList = section.availableItems();
-        String expected = String.format("%20s %-20s|    %-20s|     %-7d\n" +
-                        "%20s %-20s|    %-20s|     %-7d\n",
+        String expected = String.format(Messages.BOOK_DISPLAY_PATTERN + "\n" +
+                        Messages.BOOK_DISPLAY_PATTERN + "\n",
                 "", "Book1", "Author1", 2009,
                 "", "Book3", "Author3", 2012);
 

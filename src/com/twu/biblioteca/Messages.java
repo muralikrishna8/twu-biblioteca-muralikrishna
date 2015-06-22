@@ -18,6 +18,8 @@ public interface Messages {
     String PASSWORD_PROMPT = "Enter Your Password: ";
 
     String USER_DETAILS_PATTERN = "======> %s - %s - %s <======";
+    String BOOK_DISPLAY_PATTERN = "%20s %-20s|    %-20s|     %-7d";
+    String MOVIE_DISPLAY_PATTERN = "%20s %-20s | %-6d | %-20s | %-6s";
 
     String QUIT_OR_LOGIN_LOGOUT_OPTION_NUMBER = "8";
 }
